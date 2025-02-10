@@ -7,7 +7,6 @@
   <div class="field">
     <%= f.label :"名前" %><br>
     <%= f.text_field :name %>
-
   </div>
 
   <div class="field">
@@ -33,4 +32,5 @@
   </div>
 <% end %>
 
-<%= render "public/shared/links" %>
+<h3>既に登録済みの方</h3>
+<div><%= link_to "こちら", user_session_path %>  からログインしてください。</div>

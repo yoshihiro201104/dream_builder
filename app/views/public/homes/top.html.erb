@@ -1,7 +1,9 @@
 <h1>Homes#top</h1>
 
-<div>ゲストログイン</div>
-<div>ログイン</div>
-<div>ユーザー登録</div>
+<button type="button" class="btn btn-secondary">ゲストログイン(閲覧用)</button><br>
+
+<%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %><br>
+
+<%= link_to "ユーザー登録", new_user_registration_path, class: "btn btn-success" %>
 
 <p>Find me in app/views/homes/top.html.erb</p>

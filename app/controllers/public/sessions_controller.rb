@@ -7,6 +7,7 @@ class Public::SessionsController < Devise::SessionsController
     # 遷移先のパス
   end
 
+  
   # GET /resource/sign_in
   # def new
   #   super
