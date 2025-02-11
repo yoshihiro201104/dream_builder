@@ -6,6 +6,9 @@
   <h4>目標</h4>
   <%= f.text_field :goal %>
 
+  <h4>目標のイメージ</h4>
+  <%= f.file_field :image, accept: "image/*" %>
+
   <h4>いつまでに</h4>
   <%= f.date_field :target_date %>
 

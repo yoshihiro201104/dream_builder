@@ -14,6 +14,11 @@
     </tr>
 
     <tr>
+      <th>目標のイメージ</th>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
+    </tr>
+
+    <tr>
       <th>いつまでに</th>
       <td><%= f.date_field :target_date %></td>
     </tr>

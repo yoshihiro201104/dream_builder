@@ -1,6 +1,10 @@
 <h3>あなたの目標</h3>
 
-画像
+  <% if @goal.image.attached? %>
+    <%= image_tag @goal.image, size: "400x400" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "400x400" %>
+  <% end %>
 
 
 
