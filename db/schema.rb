@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2025_02_10_060009) do
   create_table "goals", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "goal", null: false
-    t.string "target_date", null: false
+    t.date "target_date", null: false
     t.string "monthly_goal_3", null: false
     t.string "monthly_goal_2", null: false
     t.string "monthly_goal_1", null: false
