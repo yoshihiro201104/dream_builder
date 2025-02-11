@@ -1,5 +1,6 @@
 class Public::GoalsController < ApplicationController
   def new
+    @goal = Goal.new
   end
 
   def index

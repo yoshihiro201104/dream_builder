@@ -2,28 +2,29 @@
 
 画像（左側）
 
-<%= form_with do |f| %>
+<%= form_with  do |f| %>
   <h4>目標</h4>
   <%= f.text_field :goal %>
 
   <h4>いつまでに</h4>
-  <%= f.text_field :goal %>
+  <%= f.text_field :target_date %>
 
   <h4>３か月目の目標</h4>
-  <%= f.text_field :goal %>
+  <%= f.text_field :monthly_goal_3 %>
 
   <h4>２か月目の目標</h4>
-  <%= f.text_field :goal %>
+  <%= f.text_field :monthly_goal_2 %>
 
   <h4>１か月目の目標</h4>
-  <%= f.text_field :goal %>
+  <%= f.text_field :monthly_goal_1 %>
 
     <h4>週目標</h4>
-  <%= f.text_field :goal %>
+  <%= f.text_field :weekly_goal %>
 
     <h4>アクション</h4>
-  <%= f.text_field :goal %>
+  <%= f.text_area :actoin %>
 
+  <%= f.submit '投稿' %>
 <% end %>
 
 <p>Find me in app/views/public/goals/new.html.erb</p>

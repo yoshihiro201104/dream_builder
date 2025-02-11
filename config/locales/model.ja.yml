@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      goal:
+        goal: 目標
+        target_date: いつまでに
+        monthly_goal_3: 3か月目の目標
+        monthly_goal_2: 2か月目の目標
+        monthly_goal_1: 1か月目の目標
+        weekly_goal: 週目標
+        action: アクション
