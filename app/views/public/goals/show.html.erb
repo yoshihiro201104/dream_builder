@@ -1,2 +1,49 @@
-<h1>Public::Goals#show</h1>
+<h3>あなたの目標</h3>
+
+画像
+
+
+
+<%# テーブルに枠線を引く %>
+<table border="1" style="border-collapse: collapse; width: 100%;">
+  <tr>
+    <th>目標</th>
+    <td><%= @goal.goal %></td>
+  </tr>
+
+  <tr>
+    <th>いつまでに</th>
+    <td><%= @goal.target_date %></td>
+  </tr>
+
+  <tr>
+    <th>3か月目の目標</th>
+    <td><%= @goal.monthly_goal_3 %></td>
+  </tr>
+
+  <tr>
+    <th>2か月目の目標</th>
+    <td><%= @goal.monthly_goal_2 %></td>
+  </tr>
+
+  <tr>
+    <th>1か月目の目標</th>
+    <td><%= @goal.monthly_goal_1 %></td>
+  </tr>
+
+  <tr>
+    <th>週目標</th>
+    <td><%= @goal.weekly_goal %></td>
+  </tr>
+
+  <tr>
+    <th>アクション</th>
+    <td><%= @goal.action %></td> 
+  </tr>
+</table>
+
+<!-- 編集ボタン -->
+<%= link_to '編集', edit_goal_path(@goal), class: 'button' %>
+
+
 <p>Find me in app/views/public/goals/show.html.erb</p>
