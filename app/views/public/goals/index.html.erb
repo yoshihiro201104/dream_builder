@@ -5,5 +5,18 @@
 
 <h3>目標一覧</h3>
 
+<table>
+  <tr>
+    <th>目標ID</th>
+    <th>目標</th>
+  </tr>
+  <% @goals.each do |goal| %>
+    <tr>
+      <td><%= goal.id %></td>
+      <td><%= goal.goal %></td>
+      <td><%= link_to '詳細を見る', goal_path(goal), class: 'btn btn-primary' %></td>
+    </tr>
+  <% end %>
+</table>
 
 <p>Find me in app/views/public/goals/index.html.erb</p>
