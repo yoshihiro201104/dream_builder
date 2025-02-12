@@ -16,8 +16,16 @@ Rails.application.routes.draw do
   scope module: :public do
     root "homes#top"
     get 'about', to: "homes#about"
-    resources :users, only: [:show, :edit]
+
+    resources :users, only: [:show, :edit, :update] do
+      collection do
+        get 'check'   # 退会確認ページ
+        patch 'withdraw'  # 退会処理
+      end
+    end
+
     resources :goals
+
   end
 
 
