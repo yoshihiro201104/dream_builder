@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'users/show'
-    get 'users/edit'
-    get 'users/index'
-  end
   # 顧客用
 # URL /customers/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -21,7 +16,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root "homes#top"
     get 'about', to: "homes#about"
-    resources :users
+    resources :users, only: [:show, :edit]
     resources :goals
   end
 

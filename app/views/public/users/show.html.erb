@@ -1,2 +1,30 @@
-<h1>Public::Users#show</h1>
+<h3>あなたの夢</h3>
+
+画像
+
+<!-- ユーザーの詳細 -->
+<div>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <p>ユーザーネーム:<%= @user.name %></p>
+</div>
+
+  <!-- ユーザーの投稿一覧 -->
+
+    <h3>目標一覧</h3>
+    <table>
+      <tr>
+        <th>目標ID</th>
+        <th>目標</th>
+      </tr>
+        <% @goals.each do |goal| %>
+        <tr>
+          <td><%= goal.id %></td>
+          <td><%= goal.goal %></td>
+          <td><%= link_to '詳細を見る', goal_path(goal), class: 'btn btn-primary' %></td>
+        </tr>
+    </table>
+  <% end %>
+
+
+
 <p>Find me in app/views/public/users/show.html.erb</p>
