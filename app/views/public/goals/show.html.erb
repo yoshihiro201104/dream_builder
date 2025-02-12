@@ -49,5 +49,6 @@
 <!-- 編集ボタン -->
 <%= link_to '編集', edit_goal_path(@goal), class: 'button' %>
 
-
+<!-- 削除ボタン -->
+<%= link_to "削除", goal_path(@goal.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <p>Find me in app/views/public/goals/show.html.erb</p>

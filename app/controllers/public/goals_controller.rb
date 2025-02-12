@@ -37,6 +37,12 @@ class Public::GoalsController < ApplicationController
     end
   end
 
+  def destroy
+    goal = Goal.find(params[:id]) # データ（レコード）を1件取得
+    goal.destroy # データ（レコード）を削除
+    redirect_to goals_path # 目標一覧画面へリダイレクト
+  end
+
   private
   # ストロングパラメータ
   def goal_params
