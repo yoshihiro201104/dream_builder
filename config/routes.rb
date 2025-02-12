@@ -10,27 +10,20 @@ Rails.application.routes.draw do
 # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: 'admin/sessions'
-
   }
 
   scope module: :public do
     root "homes#top"
     get 'about', to: "homes#about"
-    # 退会確認画面
-    get  '/users/check' => 'users#check'
-    # 論理削除用のルーティング
-    patch  '/users/withdraw' => 'users#withdraw'
+    get  '/users/check' => 'users#check' # 退会確認画面
+    patch  '/users/withdraw' => 'users#withdraw' # 論理削除用のルーティング
     resources :users, only: [:show, :edit, :update]
     resources :goals
-
-
-
-
   end
 
-
-
-
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
 
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

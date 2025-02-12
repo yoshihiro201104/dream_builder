@@ -12,6 +12,12 @@ class Public::SessionsController < Devise::SessionsController
     user_path(resource)  # ログイン後にマイページへ
   end
   
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to user_path(user), notice: "guestuserでログインしました。"
+  end
+  
   # GET /resource/sign_in
   # def new
   #   super
