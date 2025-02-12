@@ -7,7 +7,7 @@
   <%= image_tag @user.get_profile_image(100,100) %>
   <p>ユーザーネーム:<%= @user.name %></p>
   <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <p><%= link_to "退会する", check_users_path, class: "btn btn-danger" %></p>
+  <p><%= link_to "退会する", users_check_path, class: "btn btn-danger" %></p>
   
 </div>
 

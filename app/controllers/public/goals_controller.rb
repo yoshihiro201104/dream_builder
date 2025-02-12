@@ -29,7 +29,7 @@ class Public::GoalsController < ApplicationController
   end
 
   def update
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
     if @goal.update(goal_params)
       redirect_to goal_path(@goal), notice: "目標が更新されました！"
     else
@@ -38,7 +38,7 @@ class Public::GoalsController < ApplicationController
   end
 
   def destroy
-    goal = Goal.find(params[:id]) # データ（レコード）を1件取得
+    goal = current_user.goals.find(params[:id]) # データ（レコード）を1件取得
     goal.destroy # データ（レコード）を削除
     redirect_to goals_path # 目標一覧画面へリダイレクト
   end
