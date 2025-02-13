@@ -18,4 +18,20 @@ class Goal < ApplicationRecord
         'no_image.jpg'
       end
     end
+
+  # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match" # 完全一致
+      @goal = Goal.where("goal LIKE?","#{word}")
+    elsif search == "forward_match" # 前方一致
+      @goal = Goal.where("goal LIKE?","#{word}%")
+    elsif search == "backward_match" # 後方一致
+      @goal = Goal.where("goal LIKE?","%#{word}")
+    elsif search == "partial_match" # 部分一致
+      @goal = Goal.where("goal LIKE?","%#{word}%")
+    else
+      @goal = Goal.all
+    end
+  end
+
 end

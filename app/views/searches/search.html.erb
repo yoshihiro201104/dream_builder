@@ -1,0 +1,56 @@
+<h2><%= @range == "User" ? "Users" : "Goals" %> search for "<%= @word %>"</h2>
+
+
+<%# @users.empty? → ユーザー検索時に0件ならメッセージ表示 %>
+<%# @goals.empty? → 目標検索時に0件ならメッセージ表示 %>
+<%# @range == "User" で User か Goal かを判断 %>
+<% if (@range == "User" && @users.empty?) || (@range != "User" && @goals.empty?) %>
+  <p>該当する<%= @range == "User" ? "ユーザー" : "目標" %>が見つかりませんでした。</p>
+<% else %>
+  <table class="table table-hover table-inverse">
+    <thead>
+      <% if @range == "User" %>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+        </tr>
+      <% else %>
+        <tr>
+          <th></th>
+          <th>目標</th>
+          <th>アクション</th>
+        </tr>
+      <% end %>
+    </thead>
+    <tbody>
+      <% if @range == "User" %>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%# プロフィール画像をクリックしてユーザー詳細画面へ遷移 %>
+              <%= link_to user_path(user) do %>
+                <%= image_tag user.get_profile_image(50, 50) %>
+              <% end %>
+            </td>
+            <td>
+              <%# ユーザー名をクリックしてプロフィールページへ遷移 %>
+              <%= link_to user.name, user_path(user) %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <% @goals.each do |goal| %>
+          <tr>
+            <td>
+              <%= link_to user_path(goal.user) do %>
+                <%= image_tag goal.user.get_profile_image(50, 50) %>
+              <% end %>
+            </td>
+            <td><%= link_to goal.goal, goal_path(goal.id) %></td>
+            <td><%= goal.action %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

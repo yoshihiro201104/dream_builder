@@ -1,0 +1,10 @@
+<% if user_signed_in? %> <%# ユーザーがログインしているか確認し、ログインしていれば、検索窓を表示する %>
+<div class="search_form"> 
+  <%= form_with url: search_path, local: true, method: :get do |f| %> <%# 検索窓 %>
+      <%= f.text_field :word %>
+      <%= f.select :range, options_for_select([['User'], ['Goal']]) %> <%# 複数のモデル（UserとGoal）を選べる %>
+      <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %> <%# 複数の検索方法を選べる %>
+      <%= f.submit "検索", class: "btn-sm btn-primary" %> <%# 検索ボタン %>
+    <% end %>
+  </div>
+<% end %>
