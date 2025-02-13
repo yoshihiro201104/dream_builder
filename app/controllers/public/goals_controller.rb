@@ -5,9 +5,9 @@ class Public::GoalsController < ApplicationController
 
   def create
     # 現在のログインユーザーのフォームにパラメータを入れる、または、入った状態
-    goal = current_user.goals.new(goal_params)
+    @goal = current_user.goals.new(goal_params)
     # データをデータベースに保存するためのsaveメソッド実行
-    if goal.save
+    if @goal.save
       # トップ画面へリダイレクト
       redirect_to goals_path, notice: "目標が登録されました！"
     else

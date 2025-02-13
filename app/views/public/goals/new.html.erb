@@ -1,3 +1,15 @@
+<%# エラーメッセージを表示させる %>
+<% if @goal.errors.any? %>
+  <div class="error-messages">
+    <h4>以下のエラーがあります:</h4>
+    <ul>
+      <% @goal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h3>あなたの目標</h3>
 
 画像（左側）
