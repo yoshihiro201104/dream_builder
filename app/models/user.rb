@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :name, presence: true  # 名前が空の場合は登録できない
+
 # アソシエーション（関係性）
   #userはgoalをたくさん持っている 
   has_many :goals, dependent: :destroy
