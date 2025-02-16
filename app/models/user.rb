@@ -9,7 +9,9 @@ class User < ApplicationRecord
 # アソシエーション（関係性）
   #userはgoalをたくさん持っている 
   has_many :goals, dependent: :destroy
-
+  #userはgoal_commentをたくさん持っている 
+  has_many :goal_comments, dependent: :destroy
+  
   # ユーザーのプロフィール写真を投稿できるようにする
   has_one_attached :profile_image
 

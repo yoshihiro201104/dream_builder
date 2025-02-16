@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     get  '/users/check' => 'users#check' # 退会確認画面
     patch  '/users/withdraw' => 'users#withdraw' # 論理削除用のルーティング
     resources :users, only: [:show, :edit, :update]
-    resources :goals
+    resources :goals do
+      resources :goal_comments, only: [:create, :destroy]
+    end
   end
 
   devise_scope :user do

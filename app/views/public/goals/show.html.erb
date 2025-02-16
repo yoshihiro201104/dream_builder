@@ -52,4 +52,28 @@
 <!-- 削除ボタン -->
 <%= link_to "削除", goal_path(@goal.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <% end %>
+
+<h3>コメント</h3>
+
+<% @goal.goal_comments.each do |comment| %>
+  <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+    <strong><%= comment.user.name %></strong>: <%= comment.comment %>
+
+    <% if comment.user == current_user %>
+      <%= link_to "削除", goal_goal_comment_path(@goal, comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-danger" %>
+    <% end %>
+  </div>
+<% end %>
+
+<h3>コメントを投稿</h3>
+<%= form_with model: [@goal, GoalComment.new], local: true do |f| %>
+  <div>
+    <%= f.label :comment, "コメント" %>
+    <%= f.text_area :comment, rows: 3 %>
+  </div>
+  <div>
+    <%= f.submit "投稿", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
 <p>Find me in app/views/public/goals/show.html.erb</p>

@@ -1,0 +1,2 @@
+module Public::GoalCommentsHelper
+end

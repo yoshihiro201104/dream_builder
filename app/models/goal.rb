@@ -2,6 +2,8 @@ class Goal < ApplicationRecord
   # アソシエーション（関係性）
     # goalはuserに属している
     belongs_to :user
+    #goalはgoal_commentをたくさん持っている 
+    has_many :goal_comments, dependent: :destroy
 
     # 画像を投稿できるようにする
     has_one_attached :image
