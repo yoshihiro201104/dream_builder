@@ -9,26 +9,34 @@
 
   <% unless @user.guest_user? %>
     <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-    <p><%= link_to "退会する", users_check_path, class: "btn btn-danger" %></p>
   <% end %>
 </div>
 
   <!-- ユーザーの投稿一覧 -->
 
-    <h3>目標一覧</h3>
-    <table>
+<h3>目標一覧</h3>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>目標ID</th>
+      <th>目標</th>
+      <th>アクション</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @goals.each do |goal| %>
       <tr>
-        <th>目標ID</th>
-        <th>目標</th>
+        <td><%= goal.id %></td>
+        <td><%= link_to goal.goal, goal_path(goal), class: 'text-decoration-none' %></td>
+        <td>
+          <%= link_to '詳細を見る', goal_path(goal), class: 'btn btn-primary btn-sm' %>
+        </td>
       </tr>
-        <% @goals.each do |goal| %>
-        <tr>
-          <td><%= goal.id %></td>
-          <td><%= goal.goal %></td>
-          <td><%= link_to '詳細を見る', goal_path(goal), class: 'btn btn-primary' %></td>
-        </tr>
-    </table>
-  <% end %>
+    <% end %>
+  </tbody>
+</table>
+
 
 
 

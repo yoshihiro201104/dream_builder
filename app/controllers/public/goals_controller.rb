@@ -1,4 +1,7 @@
 class Public::GoalsController < ApplicationController
+  # 非ログイン時なら、中のページが見れない
+  before_action :authenticate_user!, only: [:new, :show, :edit, :update, :destroy]
+  
   def new
     @goal = Goal.new
   end

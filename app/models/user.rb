@@ -3,8 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  validates :name, presence: true  # 名前が空の場合は登録できない
+  # 名前のバリデーション(空白禁止、最大50文字)
+  validates :name, presence: true, length: { maximum: 50 }
+  # メールアドレスのバリデーション(空白禁止、一意性、フォーマット)
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "は正しい形式で入力してください" }
 
 # アソシエーション（関係性）
   #userはgoalをたくさん持っている 
