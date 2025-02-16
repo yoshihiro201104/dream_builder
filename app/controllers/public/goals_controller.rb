@@ -21,7 +21,11 @@ class Public::GoalsController < ApplicationController
   end
 
   def show
-    @goal = Goal.find(params[:id])
+    @goal = Goal.find_by(id: params[:id])
+    # もし目標idがなければ、一覧画面へリダイレクト
+    if @goal.nil?
+      redirect_to goals_path, alert: "目標が見つかりません"
+    end
   end
 
   def edit
