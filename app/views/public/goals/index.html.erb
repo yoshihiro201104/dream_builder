@@ -9,12 +9,13 @@
   <tr>
     <th>目標ID</th>
     <th>目標</th>
+    <th>ユーザー名</th>
   </tr>
   <% @goals.each do |goal| %>
     <tr>
       <td><%= goal.id %></td>
-      <td><%= goal.goal %></td>
-      <td><%= link_to '詳細を見る', goal_path(goal), class: 'btn btn-primary' %></td>
+      <td><%= link_to goal.goal, goal_path(goal), class: 'btn btn-primary' %></td>
+      <td><%= link_to goal.user.name, user_path(goal.user), class: 'btn btn-primary' %></td>
     </tr>
   <% end %>
 </table>
