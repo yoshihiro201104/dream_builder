@@ -47,7 +47,7 @@ class Public::GoalsController < ApplicationController
   def destroy
     goal = current_user.goals.find(params[:id]) # データ（レコード）を1件取得
     goal.destroy # データ（レコード）を削除
-    redirect_to goals_path # 目標一覧画面へリダイレクト
+    redirect_to user_path(current_user) # マイページへリダイレクト
   end
 
   private

@@ -5,6 +5,18 @@
 
 
 <h3>編集画面</h3>
+
+<% if @goal.errors.any? %>
+  <div class="error-messages">
+    <ul>
+      <% @goal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <%= form_with model: @goal, url: goal_path(@goal), method: :patch do |f| %>
 
   <table>

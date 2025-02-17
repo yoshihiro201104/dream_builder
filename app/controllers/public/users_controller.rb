@@ -37,7 +37,7 @@ class Public::UsersController < ApplicationController
     @user.update(is_active: false)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
-    redirect_to new_user_session_path  # ログイン画面へリダイレクト
+    redirect_to new_user_registration_path  # 新規登録画面へリダイレクト
   end
 
   private
