@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  # 顧客用
+  namespace :admin do
+    get 'users/index'
+    get 'users/show'
+    get 'users/edit'
+    get 'users/update'
+    get 'users/destroy'
+  end
+  # ユーザー用
 # URL /customers/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -12,6 +19,12 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
+  #管理者用のルーティング
+  namespace :admin do # namespaceを使うことで、URLにadmin/を追加し、ユーザー側と分けている
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
+  end
+
+  # ユーザー用のルーティング
   scope module: :public do
     root "homes#top"
     get 'about', to: "homes#about"

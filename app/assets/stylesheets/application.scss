@@ -34,3 +34,13 @@ th {
   background-color: #343a40;
   color: white;
 }
+
+/* 有効なユーザー（緑色） */
+.active {
+  color: green;
+}
+
+/* 退会したユーザー（灰色） */
+.inactive {
+  color: gray;
+}
