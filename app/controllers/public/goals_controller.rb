@@ -32,11 +32,20 @@ class Public::GoalsController < ApplicationController
   end
 
   def edit
-    @goal = Goal.find(params[:id])
+    # 現在のユーザーの目標をすべて取得し、その中に、paramsで指定されたidがあるか確認している
+    @goal = current_user.goals.find_by(id: params[:id]) # 現在のユーザーの目標のみ取得
+    if @goal.nil?
+      redirect_to goals_path, alert: "この目標の編集は許可されていません"
+    end
   end
 
   def update
-    @goal = current_user.goals.find(params[:id])
+    @goal = current_user.goals.find(params[:id]) #現在のユーザーの目標IDと指定されたIDが一致しているのか確認
+    if @goal.nil?
+      redirect_to goals_path, alert: "この目標の更新は許可されていません"
+      return
+    end
+
     if @goal.update(goal_params)
       redirect_to goal_path(@goal), notice: "目標が更新されました！"
     else

@@ -15,17 +15,24 @@ class Public::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user), alert: "他のユーザーのプロフィールは編集できません"
+    end
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params) # userのパラメーターを保存する
-      redirect_to user_path(@user), notice: "プロフィールが更新されました。"
+    unless @user == current_user
+      redirect_to user_path(current_user), alert: "他のユーザーのプロフィールは編集できません"
+      return
+    end
+  
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "プロフィールが更新されました！"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
-
   # 退会確認ページ
   def check
     @user = current_user
