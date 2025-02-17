@@ -12,7 +12,15 @@
 
   <body>
     <header>
-      <% if user_signed_in? %>
+      <% if admin_signed_in? %>  <!-- 管理者がサインインしている場合 -->
+        <li>
+          <%= link_to "ユーザー一覧", admin_users_path %>
+        </li>
+        <li>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        </li>
+
+      <% elsif user_signed_in? %>  <!-- ユーザーがサインインしている場合 -->
         <li>
           <%= link_to "マイページ", user_path(current_user) %>
         </li>
@@ -26,7 +34,7 @@
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
 
-      <% else %>
+      <% else %>  <!-- ユーザーや管理者がサインインしていない場合 -->
         <li>
           <%= link_to "HOME", root_path %>
         </li>
@@ -38,8 +46,7 @@
         </li>
       <% end %>
 
-      <%= render 'shared/search' %> <%#　検索フォームのテンプレート  %>
-     
+      <%= render 'shared/search' %> <%# 検索フォームのテンプレート %>
     </header>
   <%= notice %>
   <%= alert %>

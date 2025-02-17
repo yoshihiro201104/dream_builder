@@ -35,6 +35,6 @@ class Admin::UsersController < ApplicationController
   
       # 更新時に許可するパラメータを設定
       def user_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation)
+        params.require(:user).permit(:name, :email, :password, :password_confirmation, :is_active)
       end
     end

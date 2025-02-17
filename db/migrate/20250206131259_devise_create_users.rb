@@ -14,6 +14,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ## ユーザーのステータスを保存するカラム
       t.boolean :is_active, null: false, default: true
 
+      ## 管理者とユーザーを判別するカラム
+      t.string :role, default: "user"
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

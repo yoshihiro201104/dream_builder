@@ -1,2 +1,26 @@
-<h1>Admin::Users#edit</h1>
+<h1>管理者用ユーザー編集</h1>
+
+<%= form_with model: @user do |f| %>
+
+  <h4>ユーザーID</h4>
+  <%= f.label :id, @user.id %> <!-- ユーザーIDを表示するためのラベル -->
+
+  <h4>名前</h4>
+  <%= f.text_field :name %>
+  
+  <h4>メール</h4>
+  <%= f.text_area :email %>
+
+  <h4>ユーザーステータス</h4>
+    <label>
+      <%= f.radio_button :is_active, true %> 有効
+    </label>
+    <label>
+      <%= f.radio_button :is_active, false %> 退会
+    </label>
+  
+  <%= f.submit '保存' %>
+  
+<% end %>
+
 <p>Find me in app/views/admin/users/edit.html.erb</p>

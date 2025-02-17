@@ -58,4 +58,10 @@ class User < ApplicationRecord
     end
   end
 
+    # パスワード変更がある場合のみバリデーションを実施
+    def password_required?
+      new_record? || password.present? || password_confirmation.present?
+    end
+
+
 end
