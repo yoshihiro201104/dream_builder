@@ -1,6 +1,8 @@
 <h1>管理者用ユーザー編集</h1>
 
-<%= form_with model: @user do |f| %>
+<%# form_withでフォーム入力。model:@userでコントローラーの@userで定義した物を使う %>
+<%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
+
 
   <h4>ユーザーID</h4>
   <%= f.label :id, @user.id %> <!-- ユーザーIDを表示するためのラベル -->
