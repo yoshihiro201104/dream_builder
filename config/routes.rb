@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-    get 'users/update'
-    get 'users/destroy'
-  end
+
   # ユーザー用
 # URL /customers/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -22,6 +16,7 @@ Rails.application.routes.draw do
   #管理者用のルーティング
   namespace :admin do # namespaceを使うことで、URLにadmin/を追加し、ユーザー側と分けている
     resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :goals, only: [:index, :show, :edit, :update, :destroy]
   end
 
   # ユーザー用のルーティング
