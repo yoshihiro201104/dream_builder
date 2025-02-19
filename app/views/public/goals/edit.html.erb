@@ -1,70 +1,48 @@
-<h3>あなたの目標</h3>
+<div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); background-color: white;">
+  <h3 style="text-align: center;">あなたの目標</h3>
 
-画像
+  <%= image_tag @goal.image if @goal.image.attached? %>
 
+  <h3>編集画面</h3>
 
+  <%= form_with model: @goal, url: goal_path(@goal), method: :patch do |f| %>
+    <table style="border-collapse: collapse; width: 100%; max-width: 600px; margin: auto;">
+      <tr>
+        <th>目標</th>
+        <td><%= f.text_field :goal, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>目標のイメージ</th>
+        <td><%= f.file_field :image, accept: "image/*", class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>いつまでに</th>
+        <td><%= f.date_field :target_date, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>3か月目の目標</th>
+        <td><%= f.text_field :monthly_goal_3, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>2か月目の目標</th>
+        <td><%= f.text_field :monthly_goal_2, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>1か月目の目標</th>
+        <td><%= f.text_field :monthly_goal_1, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>週目標</th>
+        <td><%= f.text_field :weekly_goal, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <th>アクション</th>
+        <td><%= f.text_field :action, class: "form-control" %></td> 
+      </tr>
+    </table>
 
-<h3>編集画面</h3>
-
-<% if @goal.errors.any? %>
-  <div class="error-messages">
-    <ul>
-      <% @goal.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-
-<%= form_with model: @goal, url: goal_path(@goal), method: :patch do |f| %>
-
-  <table>
-    <tr>
-      <th>目標</th>
-      <td><%= f.text_field :goal %></td>
-    </tr>
-
-    <tr>
-      <th>目標のイメージ</th>
-      <td><%= f.file_field :image, accept: "image/*" %></td>
-    </tr>
-
-    <tr>
-      <th>いつまでに</th>
-      <td><%= f.date_field :target_date %></td>
-    </tr>
-
-    <tr>
-      <th>3か月目の目標</th>
-      <td><%= f.text_field :monthly_goal_3 %></td>
-    </tr>
-
-    <tr>
-      <th>2か月目の目標</th>
-      <td><%= f.text_field :monthly_goal_2 %></td>
-    </tr>
-
-    <tr>
-      <th>1か月目の目標</th>
-      <td><%= f.text_field :monthly_goal_1 %></td>
-    </tr>
-
-    <tr>
-      <th>週目標</th>
-      <td><%= f.text_field :weekly_goal %></td>
-    </tr>
-
-    <tr>
-      <th>アクション</th>
-      <td><%= f.text_field :action %></td> 
-    </tr>
-  </table>
-  <!-- 更新ボタン -->
-  <%= f.submit '更新', class: 'button' %>
-<% end %>
-
-
-
-
-<p>Find me in app/views/public/goals/edit.html.erb</p>
+    <div style="text-align: center; margin-top: 20px;">
+      <%= f.submit '更新', class: 'btn btn-primary', style: "padding: 10px 20px; font-size: 16px;" %>
+    </div>
+  <% end %>
+</div>
