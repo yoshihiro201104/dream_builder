@@ -1,3 +1,6 @@
+/* app/assets/stylesheets/applicatioin.scss */
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -43,4 +46,140 @@ th {
 /* 退会したユーザー（灰色） */
 .inactive {
   color: gray;
+}
+
+/* 背景色とフォントカラーの設定 */
+body {
+  background-color: #f0f4f8; /* 淡いブルーグレー */
+  color: #333; /* ダークグレー */
+}
+
+/* カード背景 */
+.card {
+  background-color: #ffffff; /* 白に近い背景 */
+  border: 1px solid #ddd; /* 薄いグレーの境界線 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影をつけて立体感 */
+}
+
+/* 見出し（h3, h4）の文字色 */
+h3, h4 {
+  color: #2c3e50; /* ダークブルー */
+}
+
+/* フォームの入力欄のデザイン */
+.form-control {
+  border-radius: 4px;
+  border: 1px solid #ccc; /* 薄いグレー */
+}
+
+.form-control:focus {
+  border-color: #3498db; /* フォーカス時に青色 */
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* ボタン */
+.btn-primary {
+  background-color: #3498db; /* 青色 */
+  border-color: #2980b9;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+  border-color: #1c5980;
+}
+
+/* セクションタイトル */
+.section-title {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+/* 画像のスタイル */
+.dream-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* テーブルのスタイル */
+.table {
+  margin-top: 20px;
+}
+
+.table th {
+  text-align: center;
+  background-color: #2c3e50;
+  color: white;
+}
+
+.table td {
+  text-align: center;
+}
+
+.btn-outline-primary {
+  border-color: #3498db;
+  color: #3498db;
+}
+
+.btn-outline-primary:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-outline-secondary {
+  border-color: #7f8c8d;
+  color: #7f8c8d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+/* ステータス（有効/退会） */
+.status {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.status.active {
+  background-color: #28a745; /* 緑色 */
+  color: white;
+}
+
+.status.inactive {
+  background-color: #dc3545; /* 赤色 */
+  color: white;
+}
+
+/* ボタン */
+.buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  margin-right: 10px;
+}
+
+/* フォームグループ */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* ラジオボタン */
+.form-check {
+  margin-bottom: 10px;
+}
+
+/* 保存ボタン */
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
 }

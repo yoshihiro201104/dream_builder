@@ -12,48 +12,68 @@
   </head>
 
   <body>
-    <header>
-      <% if admin_signed_in? %>  <!-- 管理者がサインインしている場合 -->
-        <li>
-          <%= link_to "ユーザー一覧", admin_users_path %>
-        </li>
-        <li>
-          <%= link_to "目標一覧", admin_goals_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-        </li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="<%= root_path %>">DreamBuilder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <% elsif user_signed_in? %>  <!-- ユーザーがサインインしている場合 -->
-        <li>
-          <%= link_to "マイページ", user_path(current_user) %>
-        </li>
-        <li>
-          <%= link_to "目標登録", new_goal_path %>
-        </li>
-        <li>
-          <%= link_to "目標一覧", goals_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "目標一覧", admin_goals_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+              </li>
+            <% elsif user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "目標登録", new_goal_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "目標一覧", goals_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "HOME", root_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-      <% else %>  <!-- ユーザーや管理者がサインインしていない場合 -->
-        <li>
-          <%= link_to "HOME", root_path %>
-        </li>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
+    <div class="container mt-4">
+      <% if notice %>
+        <div class="alert alert-success"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger"><%= alert %></div>
       <% end %>
 
-      <%= render 'shared/search' %> <%# 検索フォームのテンプレート %>
-    </header>
-  <%= notice %>
-  <%= alert %>
-    <%= yield %>
+      <%= render 'shared/search' %> <%# 検索フォーム %>
+      <%= yield %>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+      <p>&copy; 2025 DreamBuilder. All Rights Reserved.</p>
+    </footer>
   </body>
 </html>

@@ -1,45 +1,71 @@
-<%# エラーメッセージを表示させる %>
-<% if @goal.errors.any? %>
-  <div class="error-messages">
-    <h4>以下のエラーがあります:</h4>
-    <ul>
-      <% @goal.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+<div class="container mt-4">
+  <% if @goal.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>以下のエラーがあります:</h4>
+      <ul>
+        <% @goal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h3 class="text-center mb-4">あなたの目標</h3>
+
+  <div class="card p-4 shadow-sm">
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <!-- 画像の表示（画像があれば表示、なければデフォルト画像） -->
+        <%= image_tag @goal.image.present? ? @goal.image.url : asset_path("default_goal.jpg"), class: "img-fluid rounded mb-3", style: "max-width: 100%;" %>
+      </div>
+
+      <div class="col-md-8">
+        <%= form_with model: @goal, url: goals_path, method: :post, local: true do |f| %>
+          <div class="form-group mb-3">
+            <h4>目標</h4>
+            <%= f.text_field :goal, class: "form-control" %>
+          </div>
+
+          <div class="form-group mb-3">
+            <h4>目標のイメージ</h4>
+            <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+          </div>
+
+          <div class="form-group mb-3">
+            <h4>いつまでに</h4>
+            <%= f.date_field :target_date, class: "form-control" %>
+          </div>
+
+          <div class="form-group mb-3">
+            <h4>３か月目の目標</h4>
+            <%= f.text_field :monthly_goal_3, class: "form-control" %>
+          </div>
+
+          <div class="form-group mb-3">
+            <h4>２か月目の目標</h4>
+            <%= f.text_field :monthly_goal_2, class: "form-control" %>
+          </div>
+
+          <div class="form-group mb-3">
+            <h4>１か月目の目標</h4>
+            <%= f.text_field :monthly_goal_1, class: "form-control" %>
+          </div>
+
+          <div class="form-group mb-3">
+            <h4>週目標</h4>
+            <%= f.text_field :weekly_goal, class: "form-control" %>
+          </div>
+
+          <div class="form-group mb-3">
+            <h4>アクション</h4>
+            <%= f.text_area :action, class: "form-control", rows: 3 %>
+          </div>
+
+          <div class="text-center">
+            <%= f.submit '登録', class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
-
-<h3>あなたの目標</h3>
-
-画像（左側）
-
-<%= form_with model: @goal, url: goals_path, method: :post, local: true do |f| %>
-  <h4>目標</h4>
-  <%= f.text_field :goal %>
-
-  <h4>目標のイメージ</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-
-  <h4>いつまでに</h4>
-  <%= f.date_field :target_date %>
-
-  <h4>３か月目の目標</h4>
-  <%= f.text_field :monthly_goal_3 %>
-
-  <h4>２か月目の目標</h4>
-  <%= f.text_field :monthly_goal_2 %>
-
-  <h4>１か月目の目標</h4>
-  <%= f.text_field :monthly_goal_1 %>
-
-    <h4>週目標</h4>
-  <%= f.text_field :weekly_goal %>
-
-    <h4>アクション</h4>
-  <%= f.text_area :action %>
-
-  <%= f.submit '登録' %>
-<% end %>
-
-<p>Find me in app/views/public/goals/new.html.erb</p>
+</div>

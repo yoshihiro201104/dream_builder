@@ -1,28 +1,34 @@
 <h1>管理者用ユーザー編集</h1>
 
-<%# form_withでフォーム入力。model:@userでコントローラーの@userで定義した物を使う %>
 <%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
+  <div class="form-group">
+    <h4>ユーザーID</h4>
+    <%= f.label :id, @user.id, class: "form-label" %> <!-- ユーザーIDを表示するためのラベル -->
+  </div>
 
+  <div class="form-group">
+    <h4>名前</h4>
+    <%= f.text_field :name, class: "form-control" %> <!-- 入力フィールド -->
+  </div>
 
-  <h4>ユーザーID</h4>
-  <%= f.label :id, @user.id %> <!-- ユーザーIDを表示するためのラベル -->
+  <div class="form-group">
+    <h4>メール</h4>
+    <%= f.text_area :email, class: "form-control" %> <!-- 入力フィールド -->
+  </div>
 
-  <h4>名前</h4>
-  <%= f.text_field :name %>
-  
-  <h4>メール</h4>
-  <%= f.text_area :email %>
+  <div class="form-group">
+    <h4>ユーザーステータス</h4>
+    <div class="form-check">
+      <%= f.radio_button :is_active, true, class: "form-check-input" %>
+      <%= f.label :is_active_true, '有効', class: "form-check-label" %>
+    </div>
+    <div class="form-check">
+      <%= f.radio_button :is_active, false, class: "form-check-input" %>
+      <%= f.label :is_active_false, '退会', class: "form-check-label" %>
+    </div>
+  </div>
 
-  <h4>ユーザーステータス</h4>
-    <label>
-      <%= f.radio_button :is_active, true %> 有効
-    </label>
-    <label>
-      <%= f.radio_button :is_active, false %> 退会
-    </label>
-  
-  <%= f.submit '保存' %>
-  
+  <div class="form-group">
+    <%= f.submit '保存', class: "btn btn-primary" %> <!-- 保存ボタン -->
+  </div>
 <% end %>
-
-<p>Find me in app/views/admin/users/edit.html.erb</p>
