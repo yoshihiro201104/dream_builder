@@ -1,81 +1,75 @@
-<h3><%= @goal.user.name %>さんの目標</h3>
-  <%# 目標のイメージがあるか確認 %>
-  <% if @goal.image.attached? %>
-    <%= image_tag @goal.image, size: "400x400" %>
-  <% else %>
-    <%= image_tag 'no_image.jpg', size: "400x400" %>
-  <% end %>
-  <br>
-  <%= link_to @goal.user.name, user_path(@goal.user), class: 'btn btn-primary' %>
+<div class="container mt-4">
+  <h3 class="text-center"><%= @goal.user.name %>さんの目標</h3>
 
-
-
-<%# テーブルに枠線を引く %>
-<table border="1" style="border-collapse: collapse; width: 100%;">
-  <tr>
-    <th>目標</th>
-    <td><%= @goal.goal %></td>
-  </tr>
-
-  <tr>
-    <th>いつまでに</th>
-    <td><%= @goal.target_date %></td>
-  </tr>
-
-  <tr>
-    <th>3か月目の目標</th>
-    <td><%= @goal.monthly_goal_3 %></td>
-  </tr>
-
-  <tr>
-    <th>2か月目の目標</th>
-    <td><%= @goal.monthly_goal_2 %></td>
-  </tr>
-
-  <tr>
-    <th>1か月目の目標</th>
-    <td><%= @goal.monthly_goal_1 %></td>
-  </tr>
-
-  <tr>
-    <th>週目標</th>
-    <td><%= @goal.weekly_goal %></td>
-  </tr>
-
-  <tr>
-    <th>アクション</th>
-    <td><%= @goal.action %></td> 
-  </tr>
-</table>
-
-<!-- 編集ボタン -->
-<%= link_to '編集', edit_admin_goal_path(@goal), class: 'button' %>
-
-<!-- 削除ボタン -->
-<%= link_to "削除", admin_goal_path(@goal.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-
-
-<h3>コメント</h3>
-
-<% @goal.goal_comments.each do |comment| %>
-  <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-    <strong><%= comment.user.name %></strong>: <%= comment.comment %>
-
-    <% if comment.user == current_user %>
-      <%= link_to "削除", goal_goal_comment_path(@goal, comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-danger" %>
+  <!-- 目標のイメージ -->
+  <div class="text-center my-3">
+    <% if @goal.image.attached? %>
+      <%= image_tag @goal.image, class: "img-fluid rounded shadow", style: "max-width: 400px;" %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', class: "img-fluid rounded shadow", style: "max-width: 400px;" %>
     <% end %>
   </div>
-<% end %>
 
-<h3>コメントを投稿</h3>
-<%= form_with model: [@goal, GoalComment.new], local: true do |f| %>
-  <div>
-    <%= f.label :comment, "コメント" %>
-    <%= f.text_area :comment, rows: 3 %>
-  </div>
-  <div>
-    <%= f.submit "投稿", class: "btn btn-primary" %>
-  </div>
-<% end %>
+  <div class="text-center">
+    <%= link_to @goal.user.name, admin_user_path(@goal.user), class: 'btn btn-primary' %>
 
-<p>Find me in app/views/admin/goals/show.html.erb</p>
+  </div>
+
+  <!-- 目標詳細 -->
+  <div class="table-responsive mt-4">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>項目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>目標</th><td><%= @goal.goal %></td></tr>
+        <tr><th>いつまでに</th><td><%= @goal.target_date %></td></tr>
+        <tr><th>3か月目の目標</th><td><%= @goal.monthly_goal_3 %></td></tr>
+        <tr><th>2か月目の目標</th><td><%= @goal.monthly_goal_2 %></td></tr>
+        <tr><th>1か月目の目標</th><td><%= @goal.monthly_goal_1 %></td></tr>
+        <tr><th>週目標</th><td><%= @goal.weekly_goal %></td></tr>
+        <tr><th>アクション</th><td><%= @goal.action %></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 編集・削除ボタン -->
+  <div class="d-flex justify-content-center gap-3 mt-3">
+    <%= link_to '編集', edit_admin_goal_path(@goal), class: 'btn btn-warning' %>
+    <%= link_to "削除", admin_goal_path(@goal.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+  </div>
+
+  <!-- コメント一覧 -->
+  <h3 class="mt-5">コメント</h3>
+  <div class="list-group">
+    <% @goal.goal_comments.each do |comment| %>
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        <span>
+          <strong><%= comment.user.name %></strong>: <%= comment.comment %>
+        </span>
+        <% if comment.user == current_user %>
+          <%= link_to "削除", goal_goal_comment_path(@goal, comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-sm btn-outline-danger" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- コメント投稿フォーム -->
+  <h3 class="mt-4">コメントを投稿</h3>
+  <div class="card p-3 shadow-sm">
+    <%= form_with model: [@goal, GoalComment.new], local: true do |f| %>
+      <div class="mb-3">
+        <%= f.label :comment, "コメント", class: "form-label" %>
+        <%= f.text_area :comment, rows: 3, class: "form-control" %>
+      </div>
+      <div class="text-end">
+        <%= f.submit "投稿", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <p class="text-muted text-center mt-4">Find me in app/views/admin/goals/show.html.erb</p>
+</div>

@@ -1,4 +1,7 @@
 class Admin::UsersController < ApplicationController
+  # 管理者のみログイン
+  before_action :authenticate_admin!
+  
       # 全ユーザーを一覧表示
       def index
         @users = User.all
