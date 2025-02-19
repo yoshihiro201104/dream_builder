@@ -1,3 +1,6 @@
+/* app/assets/stylesheets/applicatioin.scss */
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -43,4 +46,44 @@ th {
 /* 退会したユーザー（灰色） */
 .inactive {
   color: gray;
+}
+
+/* 背景色とフォントカラーの設定 */
+body {
+  background-color: #f0f4f8; /* 淡いブルーグレー */
+  color: #333; /* ダークグレー */
+}
+
+/* カード背景 */
+.card {
+  background-color: #ffffff; /* 白に近い背景 */
+  border: 1px solid #ddd; /* 薄いグレーの境界線 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影をつけて立体感 */
+}
+
+/* 見出し（h3, h4）の文字色 */
+h3, h4 {
+  color: #2c3e50; /* ダークブルー */
+}
+
+/* フォームの入力欄のデザイン */
+.form-control {
+  border-radius: 4px;
+  border: 1px solid #ccc; /* 薄いグレー */
+}
+
+.form-control:focus {
+  border-color: #3498db; /* フォーカス時に青色 */
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* ボタン */
+.btn-primary {
+  background-color: #3498db; /* 青色 */
+  border-color: #2980b9;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+  border-color: #1c5980;
 }

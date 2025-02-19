@@ -1,39 +1,37 @@
-<h3>あなたの夢</h3>
-
-画像
-
-<!-- ユーザーの詳細 -->
-<div>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <p>ユーザーネーム:<%= @user.name %></p>
-
-  <% unless @user.guest_user? %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>
-
-  <!-- ユーザーの投稿一覧 -->
-
-<h3>目標一覧</h3>
-
-<table class="table table-bordered table-hover">
-  <thead class="table-dark">
-    <tr>
-      <th>目標ID</th>
-      <th>目標</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @goals.each do |goal| %>
-      <tr>
-        <td><%= goal.id %></td>
-        <td><%= link_to goal.goal, goal_path(goal), class: 'text-decoration-none' %></td>
-      </tr>
+<div class="container mt-4">
+  <h3 class="text-center mb-4">あなたの夢</h3>
+  
+  <%# card mx-auto p-3 shadow-smでカード風 %>
+  <div class="card mx-auto p-3 shadow-sm" style="max-width: 400px;"> 
+    <div class="text-center">
+      <%= image_tag @user.get_profile_image(100, 100), class: "rounded-circle mb-3" %>
+      <p class="fw-bold">ユーザーネーム: <%= @user.name %></p>
+    </div>
+    <% unless @user.guest_user? %>
+      <div class="text-center">
+        <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary btn-sm" %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
+  <h3 class="text-center mt-5">目標一覧</h3>
 
-
-
-<p>Find me in app/views/public/users/show.html.erb</p>
+  <table class="table table-bordered table-hover mt-3">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>目標ID</th>
+        <th>目標</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @goals.each do |goal| %>
+        <tr>
+          <td class="text-center"><%= goal.id %></td>
+          <td>
+            <%= link_to goal.goal, goal_path(goal), class: 'text-decoration-none' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,23 +1,26 @@
-<h3>あなたの夢</h3>
-
-            画像
+<h3 class="text-center mb-4">あなたの夢</h3>
 
 
-<h3>目標一覧</h3>
 
-<table>
-  <tr>
-    <th>目標ID</th>
-    <th>目標</th>
-    <th>ユーザー名</th>
-  </tr>
-  <% @goals.each do |goal| %>
+<h3 class="text-center mb-4">目標一覧</h3>
+
+<table class="table table-striped table-bordered text-center">
+  <thead class="table-dark">
     <tr>
-      <td><%= goal.id %></td>
-      <td><%= link_to goal.goal, goal_path(goal), class: 'btn btn-primary' %></td>
-      <td><%= link_to goal.user.name, user_path(goal.user), class: 'btn btn-primary' %></td>
+      <th>目標ID</th>
+      <th>目標</th>
+      <th>ユーザー名</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @goals.each do |goal| %>
+      <tr>
+        <td><%= goal.id %></td>
+        <td><%= link_to goal.goal, goal_path(goal), class: 'text-decoration-none text-primary' %></td>
+        <td><%= link_to goal.user.name, user_path(goal.user), class: 'text-decoration-none text-success' %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<p>Find me in app/views/public/goals/index.html.erb</p>
+<p class="text-center text-muted">Find me in app/views/public/goals/index.html.erb</p>

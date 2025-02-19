@@ -1,9 +1,18 @@
-<h1>ドリームビルダー</h1>
+<%# vh-100 でページ全体の高さをカバー %>
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+  <h1 class="mb-4 text-primary">ドリームビルダー</h1>
 
-<%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %><br>
+  <div class="w-50 text-center">
+    <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, 
+                class: "btn btn-secondary btn-lg btn-block mb-3", 
+                method: :post %>
 
-<%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %><br>
+    <%= link_to "ログイン", new_user_session_path, 
+                class: "btn btn-primary btn-lg btn-block mb-3" %>
 
-<%= link_to "新規登録", new_user_registration_path, class: "btn btn-success" %>
+    <%= link_to "新規登録", new_user_registration_path, 
+                class: "btn btn-success btn-lg btn-block mb-3" %>
+  </div>
 
-<p>Find me in app/views/homes/top.html.erb</p>
+  <p class="text-muted mt-3">Find me in app/views/homes/top.html.erb</p>
+</div>
