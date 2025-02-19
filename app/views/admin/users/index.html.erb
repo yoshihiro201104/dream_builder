@@ -1,23 +1,27 @@
 <h1>管理者用ユーザー一覧</h1>
-<table>
-  <tr>
-    <th>ID</th>
-    <th>名前</th>
-    <th>メール</th>
-    <th>ステータス</th>
-  </tr>
-  <% @users.each do |user| %>
+
+<table class="table table-bordered table-striped">
+  <thead>
     <tr>
-      <td><%= user.id %></td>
-      <td><%= link_to user.name, admin_user_path(user.id) %></td>
-      <td><%= user.email %></td>
-      <td>
-        <span class="<%= user.is_active ? 'active' : 'inactive' %>">
-          <%= user.is_active ? '有効' : '退会' %>
-        </span>
-      </td>
+      <th>ID</th>
+      <th>名前</th>
+      <th>メール</th>
+      <th>ステータス</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= link_to user.name, admin_user_path(user.id), class: 'btn btn-link' %></td>
+        <td><%= user.email %></td>
+        <td>
+          <span class="<%= user.is_active ? 'active' : 'inactive' %>">
+            <%= user.is_active ? '有効' : '退会' %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<p>Find me in app/views/admin/users/index.html.erb</p>
