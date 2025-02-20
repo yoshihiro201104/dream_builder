@@ -1,24 +1,29 @@
-<h2><%= @range == "User" ? "Users" : "Goals" %> search for "<%= @word %>"</h2>
+<h2><%= @range == "User" ? "Users" : @range == "Goal" ? "Goals" : "Groups" %> search for "<%= @word %>"</h2>
 
 
 <%# @users.empty? → ユーザー検索時に0件ならメッセージ表示 %>
 <%# @goals.empty? → 目標検索時に0件ならメッセージ表示 %>
 <%# @range == "User" で User か Goal かを判断 %>
-<% if (@range == "User" && @users.empty?) || (@range != "User" && @goals.empty?) %>
-  <p>該当する<%= @range == "User" ? "ユーザー" : "目標" %>が見つかりませんでした。</p>
+<% if (@range == "User" && @users.empty?) || (@range == "Goal" && @goals.empty?) || (@range == "Group" && @groups.empty?) %>
+  <p>該当する<%= @range == "User" ? "ユーザー" : @range == "Goal" ? "目標" : "グループ" %>が見つかりませんでした。</p>
 <% else %>
   <table class="table table-hover table-inverse">
     <thead>
       <% if @range == "User" %>
         <tr>
-          <th>image</th>
-          <th>name</th>
+          <th>画像</th>
+          <th>ユーザー名</th>
         </tr>
-      <% else %>
+      <% elsif @range == "Goal" %>
         <tr>
-          <th></th>
+          <th>画像</th>
           <th>目標</th>
           <th>アクション</th>
+        </tr>
+      <% elsif @range == "Group" %>
+        <tr>
+          <th>画像</th>
+          <th>グループ名</th>
         </tr>
       <% end %>
     </thead>
@@ -26,28 +31,33 @@
       <% if @range == "User" %>
         <% @users.each do |user| %>
           <tr>
-            <td>
-              <%# プロフィール画像をクリックしてユーザー詳細画面へ遷移 %>
-              <%= link_to user_path(user) do %>
-                <%= image_tag user.get_profile_image(50, 50) %>
-              <% end %>
-            </td>
-            <td>
-              <%# ユーザー名をクリックしてプロフィールページへ遷移 %>
-              <%= link_to user.name, user_path(user) %>
-            </td>
+            <td><%= link_to user_path(user) do %>
+              <%= image_tag user.get_profile_image(50, 50) %>
+            <% end %></td>
+            <td><%= link_to user.name, user_path(user) %></td>
           </tr>
         <% end %>
-      <% else %>
+      <% elsif @range == "Goal" %>
         <% @goals.each do |goal| %>
           <tr>
-            <td>
-              <%= link_to user_path(goal.user) do %>
-                <%= image_tag goal.user.get_profile_image(50, 50) %>
-              <% end %>
-            </td>
-            <td><%= link_to goal.goal, goal_path(goal.id) %></td>
+            <td><%= link_to user_path(goal.user) do %>
+              <%= image_tag goal.user.get_profile_image(50, 50) %>
+            <% end %></td>
+            <td><%= link_to goal.goal, goal_path(goal) %></td>
             <td><%= goal.action %></td>
+          </tr>
+        <% end %>
+      <% elsif @range == "Group" %>
+        <% @groups.each do |group| %>
+          <tr>
+            <td><%= link_to group_path(group) do %>
+              <% if group.group_image.attached? %>
+                <%= image_tag group.group_image, class: "img-fluid", size: "50x50" %>
+              <% else %>
+                No Image
+              <% end %>
+            <% end %></td>
+            <td><%= link_to group.name, group_path(group) %></td>
           </tr>
         <% end %>
       <% end %>

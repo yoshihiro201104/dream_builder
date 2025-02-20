@@ -10,4 +10,20 @@ class Group < ApplicationRecord
   def is_owned_by?(user)
     owner.id == user.id
   end
+
+  # 検索機能を追加
+  def self.looks(search, word)
+    case search
+    when "perfect_match"
+      where("name LIKE ?", word)
+    when "forward_match"
+      where("name LIKE ?", "#{word}%")
+    when "backward_match"
+      where("name LIKE ?", "%#{word}")
+    when "partial_match"
+      where("name LIKE ?", "%#{word}%")
+    else
+      all
+    end
+  end
 end

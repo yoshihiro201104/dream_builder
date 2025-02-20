@@ -1,13 +1,18 @@
-<% if user_signed_in? %> <%# ユーザーがログインしているか確認 %>
+<% if user_signed_in? %>
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card shadow-sm border-0">
           <div class="card-body">
-            <%= form_with url: search_path, local: true, method: :get, class: "d-flex flex-wrap gap-2" do |f| %> <%# d-flexで横並び、gap-2で適度な隙間 %>
+            <%= form_with url: search_path, local: true, method: :get, class: "d-flex flex-wrap gap-2" do |f| %>
               <%= f.text_field :word, class: "form-control form-control-sm w-auto", placeholder: "キーワードを入力" %>
-              <%= f.select :range, options_for_select([['User'], ['Goal']]), {}, class: "form-select form-select-sm w-auto" %>
-              <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]), {}, class: "form-select form-select-sm w-auto" %>
+              <%= f.select :range, options_for_select([['User'], ['Goal'], ['Group']]), {}, class: "form-select form-select-sm w-auto" %> <%# Groupを追加 %>
+              <%= f.select :search, options_for_select([
+                ["完全一致","perfect_match"], 
+                ["前方一致","forward_match"],  
+                ["後方一致","backward_match"], 
+                ["部分一致","partial_match"]
+              ]), {}, class: "form-select form-select-sm w-auto" %>
               <%= f.submit "検索", class: "btn btn-secondary btn-sm w-auto" %>
             <% end %>
           </div>
