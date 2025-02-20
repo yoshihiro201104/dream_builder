@@ -29,9 +29,10 @@ Rails.application.routes.draw do
     resources :goals do
       resources :goal_comments, only: [:create, :destroy]
     end
-    resources :groups, only: [:new, :index, :show, :create, :edit, :update] #グループのルーティング
+    resources :groups, only: [:new, :index, :show, :create, :edit, :update] do #グループのルーティング
+      resource :group_users, only: [:create, :destroy] # group_idが欲しいので、groupにネストしている
+    end
   end
-
   devise_scope :user do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
@@ -41,4 +42,3 @@ Rails.application.routes.draw do
 
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
-
