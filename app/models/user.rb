@@ -19,6 +19,9 @@ class User < ApplicationRecord
   # ユーザーのプロフィール写真を投稿できるようにする
   has_one_attached :profile_image
 
+  # ユーザーが作成したグループ（オーナーのグループ）
+  has_many :owned_groups, class_name: 'Group', foreign_key: 'owner_id', dependent: :destroy
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
