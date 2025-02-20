@@ -25,10 +25,11 @@ Rails.application.routes.draw do
     get 'about', to: "homes#about"
     get  '/users/check' => 'users#check' # 退会確認画面
     patch  '/users/withdraw' => 'users#withdraw' # 論理削除用のルーティング
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :index, :update]
     resources :goals do
       resources :goal_comments, only: [:create, :destroy]
     end
+    resources :groups, only: [:new, :index, :show, :create, :edit, :update] #グループのルーティング
   end
 
   devise_scope :user do
