@@ -30,9 +30,16 @@ Rails.application.routes.draw do
       resources :goal_comments, only: [:create, :destroy]
     end
     resources :groups, only: [:new, :index, :show, :create, :edit, :update] do #グループのルーティング
-      resource :group_users, only: [:create, :destroy] # group_idが欲しいので、groupにネストしている
+      resource :group_users, only: [:create, :update, :destroy] # グループ参加の為のルーティング。group_idが欲しいので、groupにネストしている
+      resource :permits, only: [:create, :destroy] # 参加承認する為のルーティング
+      member do
+        get :permits
+      end
     end
   end
+
+  get "groups/:id/permits" => "groups#permits", as: :permits # グループ承認のルーティング
+
   devise_scope :user do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end

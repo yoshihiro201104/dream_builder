@@ -12,6 +12,7 @@ class Public::GroupsController < ApplicationController
   def show
     @goal = Goal.new
     @group = Group.find(params[:id])
+    @permits = @group.group_users.where(status: :pending).includes(:user)
   end
 
   def new
@@ -41,6 +42,14 @@ class Public::GroupsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  # 参加承認待ち一覧
+  def permits
+    # 参加しようとしているグループidを取得
+    @group = Group.find(params[:id])
+    # 参加しようとしているグループで承認待ちになっているユーザーを取得し、一覧表示する
+    @permits = @group.group_users.where(status: :pending).includes(:user).page(params[:page])
   end
 
   private
