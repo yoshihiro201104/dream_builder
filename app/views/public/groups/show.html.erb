@@ -48,7 +48,9 @@
             <% @permits.each do |permit| %>
               <tr>
                 <td class="text-right">
-                  <%= link_to '加入許可', group_group_users_path(@group, permit_id: permit.id), method: :patch, class: "btn btn-sm btn-success" %>
+                  <% if @group.owner_id == current_user.id %>
+                    <%= link_to '加入許可', approve_group_user_group_path(@group, permit_id: permit.id), method: :patch, class: "btn btn-sm btn-success" %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>
