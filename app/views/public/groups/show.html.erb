@@ -26,28 +26,34 @@
             <td><%= @group.name %></td>
             <td><%= @group.introduction %></td>
 
-            <td> <%# グループに参加しているメンバーを表示 %>
-              <%# groupとuserでアソシエーションを設定している為、@group.userでグループに所属しているuserを習得できる %>
-              <% @group.users.each do |user| %>
-              <%# リスト形式で名前を表示 %>
-              <li style="list-style: none;"><%= user.name %></li>
+            <td>
+              <% @group.group_users.approved.each do |group_user| %>
+                <li style="list-style: none;"><%= group_user.user.name %></li>
               <% end %>
             </td>
 
+            <%# グループ参加申請、脱退ボタン、および承認待ち状態を表示 %>
             <td>
-              <%# グループの参加、脱退 %>
               <% if @group.is_owned_by?(current_user) %>
                 <%= link_to '編集', edit_group_path(@group), class: "btn btn-sm btn-success" %>
-              <% elsif @group.includesUser?(current_user) %>
+              <% elsif @group.group_users.find_by(user_id: current_user.id, status: "approved") %>
                 <%= link_to 'グループを離れる', group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+              <% elsif @group.group_users.find_by(user_id: current_user.id, status: "pending") %>
+                <span class="btn btn-sm btn-warning">承認待ち</span>
               <% else %>
-                <%= link_to '参加する', group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %>
+                <%= link_to '参加申請', group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %>
               <% end %>
             </td>
-
-
-
-          </tr>
+                        <%# 承認待ちボタン %>
+            <% @permits.each do |permit| %>
+              <tr>
+                <td class="text-right">
+                  <% if @group.owner_id == current_user.id %>
+                    <%= link_to '加入許可', approve_group_user_group_path(@group, permit_id: permit.id), method: :patch, class: "btn btn-sm btn-success" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
         </tbody>
       </table>
     </div>

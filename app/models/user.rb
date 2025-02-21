@@ -22,6 +22,11 @@ class User < ApplicationRecord
   # ユーザーが作成したグループ（オーナーのグループ）
   has_many :owned_groups, class_name: 'Group', foreign_key: 'owner_id', dependent: :destroy
 
+
+  has_many   :permits,          dependent: :destroy
+  has_many   :groups,           through: :group_users
+
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
