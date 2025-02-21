@@ -77,4 +77,14 @@ class Public::GroupsController < ApplicationController
       redirect_to groups_path
     end
   end
+
+  # 参加拒否処理
+def reject_group_user
+  @group = Group.find(params[:id])
+  permit = @group.group_users.find(params[:permit_id])
+  permit.destroy  # 申請データを削除して拒否
+
+  redirect_to group_path(@group), notice: "ユーザーの参加を拒否しました"
+end
+
 end
