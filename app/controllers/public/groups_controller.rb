@@ -56,15 +56,12 @@ class Public::GroupsController < ApplicationController
   # 承認処理
   def approve_group_user
     @group = Group.find(params[:id])
-    @permit = @group.group_users.find_by(id: params[:permit_id])  # params[:permit_id] を使用
+    permit = @group.group_users.find(params[:permit_id])
+    permit.update(status: "approved")
   
-    if @permit && @group.is_owned_by?(current_user)  # @permitがnilでないか確認
-      @permit.update(status: :approved)
-      redirect_to permits_group_path(@group), notice: '申請者を承認しました'
-    else
-      redirect_to @group, alert: '承認する権限がありません、または無効なリクエストです'
-    end
+    redirect_to group_path(@group), notice: "ユーザーを承認しました"
   end
+  
 
   private
 
