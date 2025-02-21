@@ -1,7 +1,7 @@
 class Public::GroupsController < ApplicationController
   # ユーザー以外がアクセスできないようにする
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :approve]  # approveアクションを追加
 
   def index
     @goal = Goal.new
@@ -46,10 +46,24 @@ class Public::GroupsController < ApplicationController
 
   # 参加承認待ち一覧
   def permits
-    # 参加しようとしているグループidを取得
     @group = Group.find(params[:id])
-    # 参加しようとしているグループで承認待ちになっているユーザーを取得し、一覧表示する
-    @permits = @group.group_users.where(status: :pending).includes(:user).page(params[:page])
+    @permits = @group.group_users.where(status: :pending).page(params[:page]).per(10).includes(:user)
+
+
+
+  end
+
+  # 承認処理
+  def approve_group_user
+    @group = Group.find(params[:id])
+    @permit = @group.group_users.find(params[:group_user_id]) # 承認する申請者を取得
+  
+    if @group.is_owned_by?(current_user) # オーナーであることを確認
+      @permit.update(status: :approved)  # 承認処理
+      redirect_to permits_group_path(@group), notice: '申請者を承認しました'
+    else
+      redirect_to @group, alert: '承認する権限がありません'
+    end
   end
 
   private

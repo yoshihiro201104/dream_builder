@@ -3,25 +3,24 @@ class Public::GroupUsersController < ApplicationController
   before_action :authenticate_user!
   
   def create
-    # 現在のユーザーをグループユーザーとして申請（pending状態）
-    group_user = current_user.group_users.new(group_id: params[:group_id], status: :pending)
-    if group_user.save
-      redirect_to request.referer, notice: '参加申請を送信しました'
+    @group = Group.find(params[:group_id])
+    @group_user = @group.group_users.new(user: current_user, status: :pending)
+
+    if @group_user.save
+      redirect_to @group, notice: "参加申請を送信しました。承認をお待ちください。"
     else
-      redirect_to request.referer, alert: 'すでに申請済みです'
+      redirect_to @group, alert: "参加申請に失敗しました。"
     end
   end
 
-  # オーナーが承認するとステータスをapprovedに変更
   def update
-    # 参加申請していユーザーのidをgroup_userとする
-    group_user = GroupUser.find(params[:id])
-    # ステータスをspprovedにアップデートできたら、参加承認
-    if group_user.update(status: :approved)
-      redirect_to request.referer, notice: '参加を承認しました'
+    @group = Group.find(params[:group_id])
+    @group_user = @group.group_users.find(params[:permit_id]) # 承認待ちのユーザーを取得
+
+    if @group_user.update(status: :approved)
+      redirect_to permits_group_path(@group), notice: "ユーザーを承認しました。"
     else
-      # 参加を拒否したら、直前のページに戻す
-      redirect_to request.referer, alert: '承認に失敗しました'
+      redirect_to permits_group_path(@group), alert: "承認に失敗しました。"
     end
   end
 
