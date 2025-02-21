@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       member do
         get :permits  # 承認待ち一覧表示のパス
         patch :approve_group_user  # 承認処理用のパス
+        patch :reject_group_user  # 参加拒否用のパス
       end
     end
   end
