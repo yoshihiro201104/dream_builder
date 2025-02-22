@@ -24,4 +24,12 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
+
+    # 管理者認証を追加
+    def authenticate_admin!
+      unless admin_signed_in?
+        redirect_to new_admin_session_path, alert: '管理者としてログインしてください'
+      end
+    end
+    
 end
