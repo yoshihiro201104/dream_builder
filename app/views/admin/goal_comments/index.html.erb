@@ -1,0 +1,19 @@
+<h1>コメント一覧</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>ユーザー</th>
+    <th>内容</th>
+    <th>操作</th>
+  </tr>
+  <% @goal_comments.each do |comment| %>
+    <tr>
+      <td><%= comment.id %></td>
+      <td><%= comment.user.name %></td>
+      <td><%= comment.comment %></td>
+      <td>
+        <%= link_to '削除', admin_goal_comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>

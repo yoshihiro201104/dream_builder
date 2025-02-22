@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'goal_comments/index'
+  end
   # ユーザー用
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -14,6 +17,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :goals, only: [:index, :show, :edit, :update, :destroy]
+    resources :goal_comments, only: [:index, :destroy]
   end
 
   # ユーザー用のルーティング
