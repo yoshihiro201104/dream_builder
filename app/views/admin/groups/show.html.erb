@@ -1,0 +1,48 @@
+<h1 class="text-center mb-4"><%= @group.name %> の詳細</h1>
+
+<div class="container">
+  <!-- グループの詳細情報 -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <p><strong>グループ名:</strong> <%= @group.name %></p>
+      <p><strong>紹介文:</strong> <%= @group.introduction %></p>
+    </div>
+    <div class="col-md-6">
+      <% if @group.image_id.present? %>
+        <p><strong>グループ画像:</strong></p>
+        <%= image_tag @group.image_id, class: "img-fluid rounded" %>
+      <% else %>
+        <p><strong>画像は登録されていません。</strong></p>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 作成者情報 -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <p><strong>作成者:</strong> <%= User.find(@group.owner_id).name %></p>
+    </div>
+  </div>
+
+  <!-- メンバー一覧 -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <h3>メンバー一覧</h3>
+      <ul class="list-group">
+        <% @group_users.each do |user| %>
+          <li class="list-group-item"><%= user.name %></li> <!-- メンバーの名前を表示 -->
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ボタン -->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <%= link_to 'グループ一覧に戻る', admin_groups_path, class: 'btn btn-primary mb-3' %>
+
+      <!-- 削除ボタン -->
+      <%= link_to 'グループを削除', admin_group_path(@group), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+    </div>
+  </div>
+</div>

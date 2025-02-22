@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'groups/index'
+    get 'groups/show'
+  end
+  namespace :admin do
     get 'goal_comments/index'
   end
   # ユーザー用
@@ -18,6 +22,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :goals, only: [:index, :show, :edit, :update, :destroy]
     resources :goal_comments, only: [:index, :destroy]
+    resources :groups, only: [:index, :show, :destroy]
   end
 
   # ユーザー用のルーティング
