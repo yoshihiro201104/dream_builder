@@ -57,17 +57,5 @@
     <% end %>
   </div>
 
-  <!-- コメント投稿フォーム -->
-  <h3 class="mt-4">コメントを投稿</h3>
-  <div class="card p-3 shadow-sm">
-    <%= form_with model: [@goal, GoalComment.new], local: true do |f| %>
-      <div class="mb-3">
-        <%= f.label :comment, "コメント", class: "form-label" %>
-        <%= f.text_area :comment, rows: 3, class: "form-control" %>
-      </div>
-      <div class="text-end">
-        <%= f.submit "投稿", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-  </div>
+
 </div>
