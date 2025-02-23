@@ -23,11 +23,11 @@ class Public::GroupsController < ApplicationController
     # 現在のユーザーがオーナーであるグループを作成
     @group = current_user.owned_groups.new(group_params)
     if @group.save
-      # オーナーを自動的にグループに参加させる
-      @group.group_users.create(user: current_user)
+      # オーナーを自動的にグループに参加 & 承認状態にする
+      @group.group_users.create(user: current_user, status: "approved") 
+  
       redirect_to @group, notice: 'グループを作成しました'
     else
-      # エラーメッセージを表示
       flash.now[:alert] = "グループ作成に失敗しました: #{@group.errors.full_messages.join(", ")}"
       render :new
     end
