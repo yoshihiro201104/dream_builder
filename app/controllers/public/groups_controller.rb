@@ -27,9 +27,12 @@ class Public::GroupsController < ApplicationController
       @group.group_users.create(user: current_user)
       redirect_to @group, notice: 'グループを作成しました'
     else
+      # エラーメッセージを表示
+      flash.now[:alert] = "グループ作成に失敗しました: #{@group.errors.full_messages.join(", ")}"
       render :new
     end
   end
+  
 
   def edit
     @group = Group.find(params[:id])
