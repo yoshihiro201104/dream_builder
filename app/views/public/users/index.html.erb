@@ -17,7 +17,11 @@
         <% @users.each do |user| %>
           <tr class="text-center">
             <td>
-              <%= image_tag user.get_profile_image(50, 50), class: "rounded-circle border border-secondary" %>
+              <% if user.profile_image.attached? && user.profile_image.variable? %>
+                <%= image_tag user.profile_image.variant(resize_to_limit: [50, 50]).processed, class: "rounded-circle border border-secondary" %>
+              <% else %>
+                <%= image_tag "no_image.jpg", class: "rounded-circle border border-secondary" %>
+              <% end %>
             </td>
             <td class="fw-bold"><%= user.name %></td>
             <td>
