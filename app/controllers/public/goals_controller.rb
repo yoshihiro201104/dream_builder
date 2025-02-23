@@ -12,7 +12,7 @@ class Public::GoalsController < ApplicationController
     # データをデータベースに保存するためのsaveメソッド実行
     if @goal.save
       # トップ画面へリダイレクト
-      redirect_to goals_path, notice: "目標が登録されました！"
+      redirect_to goal_path(@goal), notice: "目標が登録されました！"
     else
       render :new
     end
