@@ -57,7 +57,7 @@
                 <% if permit.user.profile_image.attached? %>
                   <%= image_tag permit.user.profile_image, size: "50x50", class: "rounded-circle mr-3" %>
                 <% else %>
-                  <%= image_tag "no_image.png", size: "50x50", class: "rounded-circle mr-3" %>
+                  <%= image_tag "no_image.jpg", size: "50x50", class: "rounded-circle mr-3" %>
                 <% end %>
                 <h5 class="mb-0"><%= permit.user.name %></h5>
               </div>
