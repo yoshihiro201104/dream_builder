@@ -9,8 +9,13 @@ class Public::GoalsController < ApplicationController
   def create
     # 現在のログインユーザーのフォームにパラメータを入れる、または、入った状態
     @goal = current_user.goals.new(goal_params)
+    # 投稿した画像をAIに渡す
+    tags = Vision.get_image_data(goal_params[:image])
     # データをデータベースに保存するためのsaveメソッド実行
     if @goal.save
+      tags.each do |tag|
+        @goal.tags.create(name: tag)
+      end
       # トップ画面へリダイレクト
       redirect_to goal_path(@goal), notice: "目標が登録されました！"
     else
