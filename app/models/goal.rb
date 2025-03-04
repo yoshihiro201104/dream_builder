@@ -5,6 +5,9 @@ class Goal < ApplicationRecord
     #goalはgoal_commentをたくさん持っている 
     has_many :goal_comments, dependent: :destroy
 
+    # AI画像認識
+    has_many :tags, dependent: :destroy
+
     # 画像を投稿できるようにする
     has_one_attached :image
 

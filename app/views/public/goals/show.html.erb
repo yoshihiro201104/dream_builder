@@ -11,6 +11,12 @@
   </div>
 
   <div class="text-center mb-3">
+    <% @goal.tags.each do |tag| %>
+      <span class="badge badge-secondary"><%= tag.name %></span>
+    <% end %>
+  </div>
+
+  <div class="text-center mb-3">
     <%= link_to @goal.user.name, user_path(@goal.user), class: 'btn btn-primary' %>
   </div>
 
