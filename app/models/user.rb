@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :goal_comments, dependent: :destroy
   #userはgroup_usersをたくさん持っている
   has_many :group_users, dependent: :destroy
+  #userはdreamをたくさん投稿できる
+  has_many :dreams, dependent: :destroy
   
   # ユーザーのプロフィール写真を投稿できるようにする
   has_one_attached :profile_image
