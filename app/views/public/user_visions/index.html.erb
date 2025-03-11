@@ -1,0 +1,15 @@
+<h1>ビジョン一覧</h1>
+
+<%= link_to '新規ビジョン作成', new_user_vision_path, class: 'btn btn-primary' %>
+
+<ul>
+  <% @user_visions.each do |vision| %>
+    <li>
+      <%= image_tag vision.image if vision.image.present? %>
+      <p><%= vision.description %></p>
+      <%= link_to '詳細', user_vision_path(vision), class: 'btn btn-info' %>
+      <%= link_to '編集', edit_user_vision_path(vision), class: 'btn btn-warning' %>
+      <%= link_to '削除', user_vision_path(vision), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+    </li>
+  <% end %>
+</ul>

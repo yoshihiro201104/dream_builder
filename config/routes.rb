@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     end
 
     resources :dreams, only: [:create, :destroy]
-
+    resources :user_visions
     resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
       resource :group_users, only: [:create, :update, :destroy] # グループ参加の為のルーティング
       resource :permits, only: [:create, :destroy] # 参加承認する為のルーティング

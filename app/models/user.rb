@@ -18,6 +18,8 @@ class User < ApplicationRecord
   #userはdreamをたくさん投稿できる
   has_many :dreams, dependent: :destroy
   
+  has_many :user_visions, dependent: :destroy
+
   # ユーザーのプロフィール写真を投稿できるようにする
   has_one_attached :profile_image
 

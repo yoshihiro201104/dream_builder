@@ -1,0 +1,7 @@
+<h1>ビジョン詳細</h1>
+
+<%= image_tag @user_vision.image if @user_vision.image.present? %>
+<p><%= @user_vision.description %></p>
+
+<%= link_to '編集', edit_user_vision_path(@user_vision), class: 'btn btn-warning' %>
+<%= link_to '一覧に戻る', user_visions_path, class: 'btn btn-secondary' %>

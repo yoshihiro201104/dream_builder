@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_10_121652) do
+ActiveRecord::Schema.define(version: 2025_03_11_082708) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -118,6 +118,15 @@ ActiveRecord::Schema.define(version: 2025_03_10_121652) do
     t.index ["goal_id"], name: "index_tags_on_goal_id"
   end
 
+  create_table "user_visions", force: :cascade do |t|
+    t.string "image"
+    t.text "description"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_visions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -141,4 +150,5 @@ ActiveRecord::Schema.define(version: 2025_03_10_121652) do
   add_foreign_key "permits", "groups"
   add_foreign_key "permits", "users"
   add_foreign_key "tags", "goals"
+  add_foreign_key "user_visions", "users"
 end
