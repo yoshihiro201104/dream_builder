@@ -5,23 +5,28 @@
   <main class="container mt-5 flex-grow-1">
 
 <%# 夢を追加するフォーム %>
-<h3 class="text-center mt-5">あなたの夢</h3>
 <%= form_with model: Dream.new, url: dreams_path, local: true, html: { multipart: true } do |f| %>
   <div class="input-group my-3">
     <%= f.file_field :image, class: "form-control" %>
+    <%= f.text_field :description, placeholder: "画像の説明", class: "form-control" %>
     <%= f.submit "追加", class: "btn btn-primary" %>
   </div>
 <% end %>
 
+
 <%# 夢の画像一覧表示（ヴィジョンボード風） %>
 <div class="d-flex flex-wrap gap-2 justify-content-center">
   <% @user.dreams.each do |dream| %>
-    <div class="position-relative">
+    <div class="dream-item position-relative">
       <%= image_tag dream.image.variant(resize: "100x100"), class: "rounded shadow-sm" %>
+      <% if dream.description.present? %>
+        <div class="description"><%= dream.description %></div>
+      <% end %>
       <%= link_to "×", dream_path(dream), method: :delete, class: "position-absolute top-0 start-100 translate-middle btn-close" %>
     </div>
   <% end %>
 </div>
+
 
 
 
