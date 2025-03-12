@@ -215,3 +215,15 @@ h3, h4 {
 .dream-item:hover .description {
   opacity: 1;
 }
+body {
+  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+}
+body {
+  font-family: "Nunito", sans-serif;
+}
+.rounded-circle {
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: cover; /* 画像をトリミングして中央寄せ */
+  border-radius: 50% !important;
+}
