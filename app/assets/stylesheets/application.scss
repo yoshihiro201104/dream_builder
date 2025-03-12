@@ -227,3 +227,10 @@ body {
   object-fit: cover; /* 画像をトリミングして中央寄せ */
   border-radius: 50% !important;
 }
+
+body {
+  background-image: url('photo-1497561813398-8fcc7a37b567.jpg'); /* 画像のURLを設定 */
+  background-size: cover; /* 画面いっぱいに表示 */
+  background-position: center; /* 画像を中央に配置 */
+  background-attachment: fixed; /* スクロールしても背景を固定 */
+}
