@@ -183,3 +183,54 @@ h3, h4 {
   font-size: 16px;
   border-radius: 5px;
 }
+
+.dream-item {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.dream-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.dream-item:hover .description {
+  opacity: 1;
+}
+body {
+  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+}
+body {
+  font-family: "Nunito", sans-serif;
+}
+.rounded-circle {
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: cover; /* 画像をトリミングして中央寄せ */
+  border-radius: 50% !important;
+}
+
+body {
+  background-image: url('photo-1497561813398-8fcc7a37b567.jpg'); /* 画像のURLを設定 */
+  background-size: cover; /* 画面いっぱいに表示 */
+  background-position: center; /* 画像を中央に配置 */
+  background-attachment: fixed; /* スクロールしても背景を固定 */
+}

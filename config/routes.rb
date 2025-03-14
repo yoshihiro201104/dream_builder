@@ -35,6 +35,9 @@ Rails.application.routes.draw do
     resources :goals do
       resources :goal_comments, only: [:create, :destroy]
     end
+
+    resources :dreams, only: [:create, :destroy]
+    resources :user_visions
     resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
       resource :group_users, only: [:create, :update, :destroy] # グループ参加の為のルーティング
       resource :permits, only: [:create, :destroy] # 参加承認する為のルーティング
@@ -44,6 +47,7 @@ Rails.application.routes.draw do
         patch :reject_group_user  # 参加拒否用のパス
       end
     end
+
   end
 
   # ゲストサインイン用のルーティング
