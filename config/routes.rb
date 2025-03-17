@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
     resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
       resource :group_users, only: [:create, :update, :destroy] # グループ参加
-      resources :events, only: [:new, :create]  # イベント作成のルーティング
+      resources :events, only: [:new, :create, :show, :edit, :update]  # イベント作成のルーティング
       resource :permits, only: [:create, :destroy] # 参加承認
       member do
         get :permits  # 承認待ち一覧
