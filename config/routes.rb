@@ -38,13 +38,18 @@ Rails.application.routes.draw do
 
     resources :dreams, only: [:create, :destroy]
     resources :user_visions
+
+
     resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
-      resource :group_users, only: [:create, :update, :destroy] # グループ参加の為のルーティング
-      resource :permits, only: [:create, :destroy] # 参加承認する為のルーティング
+      resource :group_users, only: [:create, :update, :destroy] # グループ参加
+      resources :events, only: [:new, :create]  # イベント作成のルーティング
+      resource :permits, only: [:create, :destroy] # 参加承認
       member do
-        get :permits  # 承認待ち一覧表示のパス
-        patch :approve_group_user  # 承認処理用のパス
-        patch :reject_group_user  # 参加拒否用のパス
+        get :permits  # 承認待ち一覧
+        patch :approve_group_user  # 承認処理
+        patch :reject_group_user  # 参加拒否
+        get 'notices/new', to: 'notices#new'  # お知らせ作成画面
+        post 'notices', to: 'notices#create'  # お知らせ送信処理
       end
     end
 

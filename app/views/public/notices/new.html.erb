@@ -1,0 +1,18 @@
+<%# app/views/public/notices/new.thml.erb %>
+<h1>イベントのお知らせ</h1>
+
+<%= form_with url: notices_group_path(@group), method: :post, local: true do |f| %>
+  <div>
+    <%= f.label :title, 'タイトル' %>
+    <%= f.text_field :title, value: @notice.title, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :body, '本文' %>
+    <%= f.text_area :body, value: @notice.body, required: true %>
+  </div>
+
+  <div>
+    <%= f.submit '送信' %>
+  </div>
+<% end %>

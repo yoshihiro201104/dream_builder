@@ -43,9 +43,16 @@
               <% else %>
                 <%= link_to '参加申請', group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %>
               <% end %>
+                    <% if @group.is_owned_by?(current_user) %>
+                    <%= link_to 'イベント作成', new_group_event_path(@group), class: "btn btn-sm btn-primary" %>
+                    <% end %>
+
             </td>
         </tbody>
       </table>
+
+
+
 
       <%# 承認待ちボタン %>
       <h3 class="mt-4">承認待ちユーザー</h3>
