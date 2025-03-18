@@ -1,0 +1,7 @@
+<%= @user.name %> さんが新しいイベントを作成しました！
+
+イベントタイトル: <%= @event.title %>
+内容:
+<%= @event.comment %>
+<%# # クリックするとイベント詳細ページへ飛べる %>
+イベントの詳細を確認する: <%= group_event_url(@group, @event) %>

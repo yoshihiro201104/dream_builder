@@ -7,13 +7,19 @@ class Public::EventsController < ApplicationController
   def create
     @group = Group.find(params[:group_id])
     @event = @group.events.build(event_params)
-
-    if @event.save
+  
+  if @event.save
+      # メール送信処理を追加
+      @group.users.each do |user|
+        EventMailer.notify_members(@event, user).deliver_later #メールを非同期通信で送信する
+      end
+  
       redirect_to group_event_path(@group, @event), notice: "イベントが通知されました！"
     else
       render :new, status: :unprocessable_entity
     end
   end
+  
 
   def show
     @group = Group.find(params[:group_id])
