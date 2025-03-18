@@ -55,4 +55,11 @@ Rails.application.routes.draw do
 
   # 検索用のルーティング
   get "search" => "searches#search"
+
+  # 開発環境メール送信
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+  
+
 end

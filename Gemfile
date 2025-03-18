@@ -67,5 +67,7 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 gem "kaminari", "~> 1.2" # ページネーション
-gem 'letter_opener', group: :development # 実際のメール送信はせず、ブラウザで確認可能
-
+group :development do
+  gem 'letter_opener'
+  gem 'letter_opener_web'
+end
