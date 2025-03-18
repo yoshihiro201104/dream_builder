@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'groups/index'
-    get 'groups/show'
-  end
-  namespace :admin do
-    get 'goal_comments/index'
-  end
   # ユーザー用
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",

@@ -1,3 +1,4 @@
+<%# app/views/public/groups/show.thml.erb %>
 <div class='container px-5 px-sm-0'>
 <%= flash[:notice] %>
   <div class='row'>
@@ -44,7 +45,7 @@
                 <%= link_to '参加申請', group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %>
               <% end %>
                     <% if @group.is_owned_by?(current_user) %>
-                    <%= link_to 'イベント作成', new_group_event_path(@group), class: "btn btn-sm btn-primary" %>
+                    <%= link_to 'イベント通知', new_group_event_path(@group), class: "btn btn-sm btn-primary" %>
                     <% end %>
 
             </td>

@@ -9,11 +9,17 @@ class Public::EventsController < ApplicationController
     @event = @group.events.build(event_params)
 
     if @event.save
-      redirect_to group_path(@group), notice: "イベントが作成されました！"
+      redirect_to group_event_path(@group, @event), notice: "イベントが通知されました！"
     else
       render :new, status: :unprocessable_entity
     end
   end
+
+  def show
+    @group = Group.find(params[:group_id])
+    @event = Event.find(params[:id])
+  end
+  
 
   private
 
