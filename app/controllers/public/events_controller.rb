@@ -11,8 +11,8 @@ class Public::EventsController < ApplicationController
   
     if @event.save
       # メール送信処理
-      @group.users.each do |user|
-        EventMailer.notify_members(@event, user).deliver_later
+      @group.group_users.approved.each do |group_user|
+        EventMailer.notify_members(@event, group_user.user).deliver_later
       end
   
       redirect_to group_event_path(@group, @event), notice: "イベントが通知されました！"

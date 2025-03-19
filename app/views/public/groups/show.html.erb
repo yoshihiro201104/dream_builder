@@ -34,21 +34,22 @@
             </td>
 
             <%# グループ参加申請、脱退ボタン、および承認待ち状態を表示 %>
-            <td>
-              <% if @group.is_owned_by?(current_user) %>
-                <%= link_to '編集', edit_group_path(@group), class: "btn btn-sm btn-success" %>
-              <% elsif @group.group_users.find_by(user_id: current_user.id, status: "approved") %>
-                <%= link_to 'グループを離れる', group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
-              <% elsif @group.group_users.find_by(user_id: current_user.id, status: "pending") %>
-                <span class="btn btn-sm btn-warning">承認待ち</span>
-              <% else %>
-                <%= link_to '参加申請', group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %>
-              <% end %>
-                    <% if @group.is_owned_by?(current_user) %>
-                    <%= link_to 'イベント通知', new_group_event_path(@group), class: "btn btn-sm btn-primary" %>
-                    <% end %>
+          <td>
+            <% if @group.is_owned_by?(current_user) %>
+              <%# d-flex:ボタンを横並び, align-items-center:縦方向の中央ぞろえ %>
+              <div class="d-flex align-items-center ">
+                <%= link_to '編集', edit_group_path(@group), class: "btn btn-sm btn-success w-auto" %>
+                <%= link_to 'イベント通知', new_group_event_path(@group), class: "btn btn-sm btn-primary w-auto" %>
+              </div>
+            <% elsif @group.group_users.find_by(user_id: current_user.id, status: "approved") %>
+              <%= link_to 'グループを離れる', group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+            <% elsif @group.group_users.find_by(user_id: current_user.id, status: "pending") %>
+              <span class="btn btn-sm btn-warning">承認待ち</span>
+            <% else %>
+              <%= link_to '参加申請', group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %>
+            <% end %>
+          </td>
 
-            </td>
         </tbody>
       </table>
 
