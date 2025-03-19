@@ -1,3 +1,9 @@
 // Place all the styles related to the public/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.goal-list-container {
+  background-color: rgba(255, 255, 255, 0.5); /* 白色の背景で透過度10% */
+  padding: 20px; /* 適度な余白を追加 */
+  border-radius: 10px; /* 角を丸める */
+}
