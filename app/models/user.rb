@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :dreams, dependent: :destroy
   
   has_many :user_visions, dependent: :destroy
+  has_many :events, dependent: :destroy
 
   # ユーザーのプロフィール写真を投稿できるようにする
   has_one_attached :profile_image
