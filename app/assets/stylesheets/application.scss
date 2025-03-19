@@ -24,6 +24,7 @@
 /*   background-position: center;*/
 /* }*/
 
+
 table {
   width: 100%;
   text-align: center;
@@ -233,4 +234,17 @@ body {
   background-size: cover; /* 画面いっぱいに表示 */
   background-position: center; /* 画像を中央に配置 */
   background-attachment: fixed; /* スクロールしても背景を固定 */
+}
+
+/* 検索フォームの背景透過設定 */
+.transparent-card {
+  background-color: rgba(255, 255, 255, 0.5) !important; /* 白色 + 50%透過 */
+}
+
+/* 背景画像が適用されている場合に透過を反映させる */
+body {
+  background-image: url('photo-1497561813398-8fcc7a37b567.jpg') !important; /* 画像のURLを設定 */
+  background-size: cover !important; /* 画面いっぱいに表示 */
+  background-position: center !important; /* 画像を中央に配置 */
+  background-attachment: fixed !important; /* スクロールしても背景を固定 */
 }
