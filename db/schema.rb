@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_18_050433) do
+ActiveRecord::Schema.define(version: 2025_03_20_055244) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -111,6 +111,15 @@ ActiveRecord::Schema.define(version: 2025_03_18_050433) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "goal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["goal_id"], name: "index_likes_on_goal_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "permits", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "group_id", null: false
@@ -158,6 +167,8 @@ ActiveRecord::Schema.define(version: 2025_03_18_050433) do
   add_foreign_key "events", "groups"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
+  add_foreign_key "likes", "goals"
+  add_foreign_key "likes", "users"
   add_foreign_key "permits", "groups"
   add_foreign_key "permits", "users"
   add_foreign_key "tags", "goals"

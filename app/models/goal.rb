@@ -5,6 +5,8 @@ class Goal < ApplicationRecord
     #goalはgoal_commentをたくさん持っている 
     has_many :goal_comments, dependent: :destroy
 
+    has_many :likes, dependent: :destroy
+    has_many :liked_users, through: :likes, source: :user
     # AI画像認識
     has_many :tags, dependent: :destroy
 

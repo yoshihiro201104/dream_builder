@@ -20,6 +20,12 @@ class User < ApplicationRecord
   
   has_many :user_visions, dependent: :destroy
   has_many :events, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_goals, through: :likes, source: :goal
+
+  def liked?(goal)
+    liked_goals.include?(goal)
+  end
 
   # ユーザーのプロフィール写真を投稿できるようにする
   has_one_attached :profile_image

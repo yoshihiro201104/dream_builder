@@ -1,0 +1,7 @@
+<%# app/views/public/goals/_like_button.html.erb %>
+<% if current_user.liked?(goal) %>
+  <%= button_to "❤️ いいね解除", goal_like_path(goal), method: :delete, remote: true, class: "btn btn-danger", id: "like-button-#{goal.id}" %>
+<% else %>
+  <%= button_to "🤍 いいね", goal_like_path(goal), method: :post, remote: true, class: "btn btn-primary", id: "like-button-#{goal.id}" %>
+<% end %>
+

@@ -1,0 +1,13 @@
+<%# app/views/public/likes/destroy.js.erb %>
+<% if current_user.liked?(@goal) %>
+  <%# いいねボタンを「いいね解除」に変更 %>
+  document.getElementById("like-button-<%= @goal.id %>").innerHTML = "❤️ いいね解除";
+  document.getElementById("like-button-<%= @goal.id %>").setAttribute("href", "<%= goal_like_path(@goal) %>");
+  document.getElementById("like-button-<%= @goal.id %>").setAttribute("method", "delete");
+<% else %>
+  <%# いいねボタンを「いいね」に変更 %>
+  document.getElementById("like-button-<%= @goal.id %>").innerHTML = "🤍 いいね";
+  document.getElementById("like-button-<%= @goal.id %>").setAttribute("href", "<%= goal_like_path(@goal) %>");
+  document.getElementById("like-button-<%= @goal.id %>").setAttribute("method", "post");
+<% end %>
+
