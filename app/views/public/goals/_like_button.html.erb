@@ -1,0 +1,10 @@
+<%# app/views/public/goals/_like_button.html.erb %>
+<% if current_user.liked?(goal) %>
+  <%= link_to goal_like_path(goal), method: :delete, remote: true, class: "like-toggle", id: "like-toggle-#{goal.id}" do %>
+    <i class="fa fa-heart" id="heart-icon-<%= goal.id %>" aria-hidden="true"></i> 
+  <% end %>
+<% else %>
+  <%= link_to goal_like_path(goal), method: :post, remote: true, class: "like-toggle", id: "like-toggle-#{goal.id}" do %>
+    <i class="fa fa-heart-o" id="heart-icon-<%= goal.id %>" aria-hidden="true"></i> 
+  <% end %>
+<% end %>

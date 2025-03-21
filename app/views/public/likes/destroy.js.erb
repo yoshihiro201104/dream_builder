@@ -1,0 +1,7 @@
+<%# app/views/public/likes/destroy.js.erb %>
+
+var likeIcon = document.getElementById("heart-icon-<%= @goal.id %>");
+likeIcon.classList.remove("fa-heart");
+likeIcon.classList.add("fa-heart-o");
+
+
