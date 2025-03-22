@@ -1,5 +1,3 @@
 <%# app/views/public/likes/create.js.erb %>
 
-var likeIcon = document.getElementById("heart-icon-<%= @goal.id %>");
-likeIcon.classList.remove("fa-heart-o");
-likeIcon.classList.add("fa-heart");
+$("#favorite_btn_<%= @goal.id %>").html("<%= j(render 'public/goals/like_button', goal: @goal) %>");
