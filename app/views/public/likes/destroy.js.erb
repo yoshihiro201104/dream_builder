@@ -1,5 +1,5 @@
 <%# app/views/public/likes/destroy.js.erb %>
 
-$("#favorite_btn_<%= @goal.id %>").html("<%= j(render 'public/goals/like_button', goal: @goal) %>");
+$("#like_button_<%= @goal.id %>").html("<%= j(render 'public/goals/like_button', goal: @goal) %>");
 
 
