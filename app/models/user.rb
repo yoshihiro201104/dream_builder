@@ -23,6 +23,10 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_goals, through: :likes, source: :goal
 
+  # ユーザーと通知機能を紐づける。notificationsテーブルが中間テーブルとして、goalとlikeを繋いでいる。
+  # これにより、goalを投稿したり、like(いいね)されると、通知がユーザーに行く。
+  has_many :notifications, dependent: :destroy
+
   # フォローしている関連付け
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   
