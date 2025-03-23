@@ -5,6 +5,9 @@ class Goal < ApplicationRecord
     #goalはgoal_commentをたくさん持っている 
     has_many :goal_comments, dependent: :destroy
 
+    # goal投稿すると、通知されるようにnotificationsに紐づける
+    has_many :notifications, as: :notifiable, dependent: :destroy
+
     # AI画像認識
     has_many :tags, dependent: :destroy
 
