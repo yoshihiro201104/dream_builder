@@ -11,7 +11,7 @@ class Public::LikesController < ApplicationController
   end
 
   def destroy
-    like = current_user.likes.find_by(goal: @goal)
+    like = current_user.likes.find_by(goal_id: @goal.id)
     like.destroy if like
     respond_to do |format|
       format.js # destroy.js.erbを呼び出す
