@@ -24,9 +24,14 @@ Rails.application.routes.draw do
     get 'about', to: "homes#about"
     get '/users/check' => 'users#check' # 退会確認画面
     patch '/users/withdraw' => 'users#withdraw' # 論理削除用のルーティング
-    resources :users, only: [:show, :edit, :index, :update]
+    resources :users, only: [:show, :edit, :index, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
+    end
     resources :goals do
       resources :goal_comments, only: [:create, :destroy]
+      resource :like, only: [:create, :destroy]
     end
 
     resources :dreams, only: [:create, :destroy]

@@ -1,3 +1,4 @@
+<%# app/views/public/goals/index.html.erb %>
 <h3 class="text-center mb-4">あなたの夢</h3>
 
 
@@ -18,6 +19,9 @@
         <td><%= goal.id %></td>
         <td><%= link_to goal.goal, goal_path(goal), class: 'text-decoration-none text-primary' %></td>
         <td><%= link_to goal.user.name, user_path(goal.user), class: 'text-decoration-none text-success' %></td>
+        <td id ="like_button_<%= goal.id %>"> <%# いいねボタンを追加 %>
+          <%= render "public/goals/like_button", goal: goal %>
+        </td>
       </tr>
     <% end %>
   </tbody>

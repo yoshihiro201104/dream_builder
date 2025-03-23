@@ -1,0 +1,12 @@
+// Place all the styles related to the public/likes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.like-toggle i {
+
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.like-toggle i:hover {
+  color: #ff0000; /* ハートが赤くなる */
+}

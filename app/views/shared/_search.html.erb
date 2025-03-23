@@ -1,8 +1,9 @@
+<%# app/views/shared/_search.html.erb %>
 <% if user_signed_in? %>
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <div class="card shadow-sm border-0">
+        <div class="card shadow-sm border-0 transparent-card">
           <div class="card-body">
             <%= form_with url: search_path, local: true, method: :get, class: "d-flex flex-wrap gap-2" do |f| %>
               <%= f.text_field :word, class: "form-control form-control-sm w-auto", placeholder: "キーワードを入力" %>

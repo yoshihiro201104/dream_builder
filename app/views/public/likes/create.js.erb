@@ -1,0 +1,3 @@
+<%# app/views/public/likes/create.js.erb %>
+
+$("#like_button_<%= @goal.id %>").html("<%= j(render 'public/goals/like_button', goal: @goal) %>");

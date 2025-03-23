@@ -1,3 +1,16 @@
 // Place all the styles related to the public/goals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+/* app/assets/stylesheets/public/goasl.scss */
+
+/* テーブルの背景を透過に */
+.table {
+  background-color: rgba(255, 255, 255, 0.5); /* 50% 透過 */
+  border: 1px solid #ddd;
+}
+
+/* 他の要素には透過を設定するが、このpタグには透過を設定しない */
+.text-muted {
+  background-color: transparent !important; /* 背景色を透明に設定 */
+}

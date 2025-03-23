@@ -8,6 +8,8 @@ class Goal < ApplicationRecord
     # goal投稿すると、通知されるようにnotificationsに紐づける
     has_many :notifications, as: :notifiable, dependent: :destroy
 
+    has_many :likes, dependent: :destroy
+    has_many :liked_users, through: :likes, source: :user
     # AI画像認識
     has_many :tags, dependent: :destroy
 
