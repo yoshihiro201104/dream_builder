@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     resources :dreams, only: [:create, :destroy]
     resources :user_visions
 
+    # 通知機能(更新＝既読状態にする為、updateのみ設定)
+    resources :notifications, only: [:update]
 
     resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
       resource :group_users, only: [:create, :update, :destroy] # グループ参加

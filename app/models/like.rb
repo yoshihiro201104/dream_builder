@@ -6,7 +6,7 @@ class Like < ApplicationRecord
   has_one :notification, as: :notifiable, dependent: :destroy
   # 「いいね」がされると、その投稿者に通知が行く。
   after_create do
-    create_notification(user_id: book.user_id)
+    create_notification(user_id: goal.user_id)
   end
 
   validates :user_id, uniqueness: { scope: :goal_id } # 同じユーザーが同じGoalに複数回いいねできないようにする
