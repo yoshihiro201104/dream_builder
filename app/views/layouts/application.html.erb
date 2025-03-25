@@ -34,6 +34,8 @@
                 <%= link_to "グループ一覧", admin_groups_index_path, class: "nav-link" %>
               </li>
 
+
+
               </li>
               <li class="nav-item">
                 <%= link_to "コメント一覧", admin_goal_comments_index_path, class: "nav-link" %>
@@ -60,6 +62,7 @@
               <li class="nav-item">
                 <%= link_to "グループ一覧", groups_path, class: "nav-link" %> <%# 追加したリンク %>
               </li>
+              <%= render 'layouts/header' %>
               <li class="nav-item">
                 <%= link_to "About", about_path, class: "nav-link" %>
               </li>
