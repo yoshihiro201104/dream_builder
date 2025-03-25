@@ -16,7 +16,7 @@ class Public::GoalsController < ApplicationController
     else
       tags = []
     end
-  
+
     # データをデータベースに保存するためのsaveメソッド実行
     if @goal.save
       tags.each do |tag|
