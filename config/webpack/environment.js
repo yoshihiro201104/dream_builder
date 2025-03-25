@@ -1,3 +1,5 @@
+require("dotenv").config(); // Maps_API_Keyをjavascriptで読み込む
+
 const { environment } = require('@rails/webpacker')
 
 module.exports = environment

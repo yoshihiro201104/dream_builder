@@ -58,7 +58,7 @@ gem 'devise'
 gem 'image_processing', '~> 1.2'
 
 # デプロイの設定
-gem 'dotenv-rails'
+gem 'dotenv-rails' # 環境変数を管理するためのライブラリ
 group :production do
   gem 'mysql2'
 end
@@ -71,3 +71,5 @@ group :development do
   gem 'letter_opener'
   gem 'letter_opener_web'
 end
+
+gem 'geocoder' # 位置情報を扱うためのGem
