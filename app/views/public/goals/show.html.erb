@@ -4,11 +4,12 @@
   <%# 目標のイメージ %>
   <div class="text-center mb-3">
     <% if @goal.image.attached? %>
-      <%= image_tag @goal.image, size: "400x400", class: "img-fluid rounded" %>
+      <%= image_tag @goal.image, class: "img-fluid rounded", style: "max-width: 400px; height: auto;" %>
     <% else %>
-      <%= image_tag 'no_image.jpg', size: "400x400", class: "img-fluid rounded" %>
+      <%= image_tag 'no_image.jpg', class: "img-fluid rounded", style: "max-width: 400px; height: auto;" %>
     <% end %>
   </div>
+
 
   <div class="text-center mb-3">
     <% @goal.tags.each do |tag| %>
