@@ -19,8 +19,7 @@ class Public::LikesController < ApplicationController
   end
 
   private
-
-  def set_goal
-    @goal = Goal.find(params[:goal_id])
-  end
+    def set_goal
+      @goal = Goal.find(params[:goal_id])
+    end
 end

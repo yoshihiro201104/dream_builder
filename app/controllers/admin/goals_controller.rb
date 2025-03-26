@@ -32,9 +32,8 @@ class Admin::GoalsController < ApplicationController
   end
 
   private
-
-  # ストロングパラメータ
-  def goal_params
-    params.require(:goal).permit(:goal, :image, :target_date, :monthly_goal_3, :monthly_goal_2, :monthly_goal_1, :weekly_goal, :action)
-  end
+    # ストロングパラメータ
+    def goal_params
+      params.require(:goal).permit(:goal, :image, :target_date, :monthly_goal_3, :monthly_goal_2, :monthly_goal_1, :weekly_goal, :action)
+    end
 end

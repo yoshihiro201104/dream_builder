@@ -9,15 +9,15 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "は正しい形式で入力してください" }
 
 # アソシエーション（関係性）
-  #userはgoalをたくさん持っている 
+  #userはgoalをたくさん持っている
   has_many :goals, dependent: :destroy
-  #userはgoal_commentをたくさん持っている 
+  #userはgoal_commentをたくさん持っている
   has_many :goal_comments, dependent: :destroy
   #userはgroup_usersをたくさん持っている
   has_many :group_users, dependent: :destroy
   #userはdreamをたくさん投稿できる
   has_many :dreams, dependent: :destroy
-  
+
   has_many :user_visions, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -29,13 +29,13 @@ class User < ApplicationRecord
 
   # フォローしている関連付け
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  
+
   # フォローされている関連付け
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  
+
   # フォローしているユーザーを取得
   has_many :followings, through: :active_relationships, source: :followed
-  
+
   # フォロワーを取得
   has_many :followers, through: :passive_relationships, source: :follower
 
@@ -43,12 +43,12 @@ class User < ApplicationRecord
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
-  
+
   # 指定したユーザーのフォローを解除する
   def unfollow(user)
     active_relationships.find_by(followed_id: user.id).destroy
   end
-  
+
   # 指定したユーザーをフォローしているかどうかを判定
   def following?(user)
     followings.include?(user)
@@ -62,7 +62,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   # ユーザーが作成したグループ（オーナーのグループ）
-  has_many :owned_groups, class_name: 'Group', foreign_key: 'owner_id', dependent: :destroy
+  has_many :owned_groups, class_name: "Group", foreign_key: "owner_id", dependent: :destroy
 
 
   has_many   :permits,          dependent: :destroy
@@ -76,7 +76,7 @@ class User < ApplicationRecord
       "/assets/no_image.jpg" # デフォルト画像のパス
     end
   end
-  
+
 
   # is_active が true のときのみログインを許可する
   def active_for_authentication?
@@ -95,7 +95,7 @@ class User < ApplicationRecord
   def guest_user?
     email == GUEST_USER_EMAIL
   end
-  
+
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match" # 完全一致
@@ -112,9 +112,9 @@ class User < ApplicationRecord
   end
 
     # パスワード変更がある場合のみバリデーションを実施
-    def password_required?
-      new_record? || password.present? || password_confirmation.present?
-    end
+  def password_required?
+    new_record? || password.present? || password_confirmation.present?
+  end
 
 
 end

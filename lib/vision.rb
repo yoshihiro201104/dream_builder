@@ -1,6 +1,6 @@
-require 'base64'
-require 'json'
-require 'net/https'
+require "base64"
+require "json"
+require "net/https"
 
 module Vision
   class << self
@@ -19,7 +19,7 @@ module Vision
           },
           features: [
             {
-              type: 'LABEL_DETECTION'
+              type: "LABEL_DETECTION"
             }
           ]
         }]
@@ -30,14 +30,14 @@ module Vision
       https = Net::HTTP.new(uri.host, uri.port)
       https.use_ssl = true
       request = Net::HTTP::Post.new(uri.request_uri)
-      request['Content-Type'] = 'application/json'
+      request["Content-Type"] = "application/json"
       response = https.request(request, params)
       response_body = JSON.parse(response.body)
       # APIレスポンス出力
-      if (error = response_body['responses'][0]['error']).present?
-        raise error['message']
+      if (error = response_body["responses"][0]["error"]).present?
+        raise error["message"]
       else
-        response_body['responses'][0]['labelAnnotations'].pluck('description').take(3)
+        response_body["responses"][0]["labelAnnotations"].pluck("description").take(3)
       end
     end
   end

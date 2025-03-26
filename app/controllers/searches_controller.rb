@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
 
     case @range
     # もしUserモデルを検索なら、
-    when "User" 
+    when "User"
       # Userモデルの検索方法(完全一致、前方一致、後方一致、部分一致)と検索ワードから検索
       @users = User.looks(params[:search], @word)    # 検索方法→params[:search]。looksメソッドを使い、検索内容を取得。
     # もしUserモデルじゃないなら(Goalモデルなら)、
