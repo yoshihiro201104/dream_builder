@@ -14,3 +14,13 @@
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.follows, .followers {
+  background-color: rgba(255, 255, 255, 0) !important; /* 透過率50%の白色 */
+  color: black !important; /* 文字色を黒に */
+  border: none !important; /* 枠線を完全に消す */
+  box-shadow: none !important; /* 影を消す */
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
