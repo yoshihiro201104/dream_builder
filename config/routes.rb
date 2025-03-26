@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   # ユーザー用
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions'
+    sessions: "public/sessions"
   }
 
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: 'admin/sessions'
+    sessions: "admin/sessions"
   }
 
   # 管理者用のルーティング
@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   # ユーザー用のルーティング
   scope module: :public do
     root "homes#top"
-    get 'about', to: "homes#about"
-    get '/users/check' => 'users#check' # 退会確認画面
-    patch '/users/withdraw' => 'users#withdraw' # 論理削除用のルーティング
+    get "about", to: "homes#about"
+    get "/users/check" => "users#check" # 退会確認画面
+    patch "/users/withdraw" => "users#withdraw" # 論理削除用のルーティング
     resources :users, only: [:show, :edit, :index, :update] do
       resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"
@@ -48,8 +48,8 @@ Rails.application.routes.draw do
         get :permits  # 承認待ち一覧
         patch :approve_group_user  # 承認処理
         patch :reject_group_user  # 参加拒否
-        get 'notices/new', to: 'notices#new'  # お知らせ作成画面
-        post 'notices', to: 'notices#create'  # お知らせ送信処理
+        get "notices/new", to: "notices#new"  # お知らせ作成画面
+        post "notices", to: "notices#create"  # お知らせ送信処理
       end
     end
 
@@ -67,6 +67,5 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-  
 
 end

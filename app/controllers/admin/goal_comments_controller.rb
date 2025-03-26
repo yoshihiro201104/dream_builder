@@ -12,7 +12,7 @@ class Admin::GoalCommentsController < ApplicationController
     # 取得したコメントIDを削除
     @comment.destroy
     # コメント一覧へリダイレクトし、削除メッセージ表示
-    redirect_to admin_goal_comments_path, notice: 'コメントを削除しました'
+    redirect_to admin_goal_comments_path, notice: "コメントを削除しました"
   end
 
 end

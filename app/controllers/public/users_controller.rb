@@ -28,7 +28,7 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user), alert: "他のユーザーのプロフィールは編集できません"
       return
     end
-  
+
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "プロフィールが更新されました！"
     else
@@ -50,18 +50,17 @@ class Public::UsersController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :profile_image, :email)
-  end
-
-  def ensure_guest_user
-    @user = current_user
-    if @user.guest_user?
-      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    def user_params
+      params.require(:user).permit(:name, :profile_image, :email)
     end
-  end  
+
+    def ensure_guest_user
+      @user = current_user
+      if @user.guest_user?
+        redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      end
+    end
 
 
-  
+
 end
