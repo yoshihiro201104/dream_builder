@@ -58,11 +58,7 @@ gem "devise"
 gem "image_processing", "~> 1.2"
 
 # デプロイの設定
-<<<<<<< HEAD
 gem 'dotenv-rails' # 環境変数を管理するためのライブラリ
-=======
-gem "dotenv-rails"
->>>>>>> main
 group :production do
   gem "mysql2"
 end
@@ -72,13 +68,6 @@ gem "net-pop"
 gem "net-imap"
 gem "kaminari", "~> 1.2" # ページネーション
 group :development do
-<<<<<<< HEAD
-  gem 'letter_opener'
-  gem 'letter_opener_web'
-end
-
-gem 'geocoder' # 位置情報を扱うためのGem
-=======
   gem "letter_opener"
   gem "letter_opener_web"
 end
@@ -91,4 +80,4 @@ gem "rubocop-packaging", require: false
 gem "rubocop-rspec"
 gem "rubocop-md"
 # ------------ここまで-----------------Rubocop
->>>>>>> main
+gem 'geocoder' # 追加
