@@ -21,7 +21,9 @@ class Public::EventsController < ApplicationController
     end
   end
   
-  
+  def index
+    @events = Event.all    
+  end
 
   def show
     @group = Group.find(params[:group_id])
