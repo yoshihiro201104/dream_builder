@@ -1,7 +1,7 @@
 class Public::GroupUsersController < ApplicationController
   # ログインしていないuserはこのコントローラーのアクションを実行できない
   before_action :authenticate_user!
-  
+
   def create
     @group = Group.find(params[:group_id])
     @group_user = @group.group_users.new(user: current_user, status: :pending)
@@ -32,10 +32,10 @@ class Public::GroupUsersController < ApplicationController
     # もしヒットしたら、そのidを削除して、直前のページにリダイレクト
     if group_user
       group_user.destroy
-      redirect_to request.referer, notice: 'グループから退出しました'
+      redirect_to request.referer, notice: "グループから退出しました"
     else
       # なければ、エラーメッセージを表示して、直前のページにリダイレクト
-      redirect_to request.referer, alert: '操作に失敗しました'
+      redirect_to request.referer, alert: "操作に失敗しました"
     end
   end
 

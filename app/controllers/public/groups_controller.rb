@@ -24,15 +24,15 @@ class Public::GroupsController < ApplicationController
     @group = current_user.owned_groups.new(group_params)
     if @group.save
       # オーナーを自動的にグループに参加 & 承認状態にする
-      @group.group_users.create(user: current_user, status: "approved") 
-  
-      redirect_to @group, notice: 'グループを作成しました'
+      @group.group_users.create(user: current_user, status: "approved")
+
+      redirect_to @group, notice: "グループを作成しました"
     else
       flash.now[:alert] = "グループ作成に失敗しました: #{@group.errors.full_messages.join(", ")}"
       render :new
     end
   end
-  
+
 
   def edit
     @group = Group.find(params[:id])
@@ -61,20 +61,19 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     permit = @group.group_users.find(params[:permit_id])
     permit.update(status: "approved")
-  
+
     redirect_to group_path(@group), notice: "ユーザーを承認しました"
   end
-  
+
     # 参加拒否処理
-def reject_group_user
-  @group = Group.find(params[:id])
-  permit = @group.group_users.find(params[:permit_id])
-  permit.destroy  # 申請データを削除して拒否
-  redirect_to group_path(@group), notice: "ユーザーの参加を拒否しました"
-end
+  def reject_group_user
+    @group = Group.find(params[:id])
+    permit = @group.group_users.find(params[:permit_id])
+    permit.destroy  # 申請データを削除して拒否
+    redirect_to group_path(@group), notice: "ユーザーの参加を拒否しました"
+  end
 
   private
-
   # グループのパラメータを制限
   def group_params
     params.require(:group).permit(:name, :introduction, :group_image)

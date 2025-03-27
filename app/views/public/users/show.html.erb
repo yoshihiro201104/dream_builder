@@ -46,14 +46,18 @@
           </div>
         <% end %>
       </div>
-        <tr>
-    <th>follows</th>
-    <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
-  </tr>
-  <tr>
-    <th>followers</th>
-    <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
-  </tr>
+
+    <%# フォロー、フォロワーの表示 %>
+    <div class="d-flex justify-content-center gap-3 mt-3">
+      <div class="follows">
+        <%= link_to "#{@user.followings.count} follows", user_followings_path(@user), class: "btn btn-primary", style: "background-color: rgba(255, 255, 255, 0.5); border: 0; color: black;" %>
+      </div>
+      <div class="followers">
+        <%= link_to "#{@user.followers.count} followers", user_followers_path(@user), class: "btn btn-primary", style: "background-color: rgba(255, 255, 255, 0.5); border: 0; color: black;" %>
+      </div>
+    </div>
+
+
 
 <div class="row">
   <% if current_user != @user %>

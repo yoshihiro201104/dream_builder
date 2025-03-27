@@ -17,7 +17,7 @@ class Public::UserVisionsController < ApplicationController
     @user_vision.user = current_user # ログイン機能がある場合
 
     if @user_vision.save
-      redirect_to [:public, @user_vision], notice: 'ビジョンが作成されました！'
+      redirect_to [:public, @user_vision], notice: "ビジョンが作成されました！"
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Public::UserVisionsController < ApplicationController
 
   def update
     if @user_vision.update(user_vision_params)
-      redirect_to [:public, @user_vision], notice: 'ビジョンが更新されました！'
+      redirect_to [:public, @user_vision], notice: "ビジョンが更新されました！"
     else
       render :edit
     end
@@ -36,16 +36,15 @@ class Public::UserVisionsController < ApplicationController
 
   def destroy
     @user_vision.destroy
-    redirect_to public_user_visions_path, notice: 'ビジョンが削除されました！'
+    redirect_to public_user_visions_path, notice: "ビジョンが削除されました！"
   end
 
   private
+    def set_user_vision
+      @user_vision = UserVision.find(params[:id])
+    end
 
-  def set_user_vision
-    @user_vision = UserVision.find(params[:id])
-  end
-
-  def user_vision_params
-    params.require(:user_vision).permit(:image, :description)
-  end
+    def user_vision_params
+      params.require(:user_vision).permit(:image, :description)
+    end
 end

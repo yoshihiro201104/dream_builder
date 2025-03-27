@@ -2,7 +2,7 @@ class Goal < ApplicationRecord
   # アソシエーション（関係性）
     # goalはuserに属している
     belongs_to :user
-    #goalはgoal_commentをたくさん持っている 
+    #goalはgoal_commentをたくさん持っている
     has_many :goal_comments, dependent: :destroy
 
     # goal投稿すると、通知されるようにnotificationsに紐づける
@@ -12,7 +12,7 @@ class Goal < ApplicationRecord
       user.followers.each do |follower|
         notifications.create(user_id: follower.id)
       end
-    end  
+    end
 
     has_many :likes, dependent: :destroy
     has_many :liked_users, through: :likes, source: :user
@@ -31,23 +31,23 @@ class Goal < ApplicationRecord
       if image.attached?
         image
       else
-        'no_image.jpg'
+        "no_image.jpg"
       end
     end
 
   # 検索方法分岐
-  def self.looks(search, word)
-    if search == "perfect_match" # 完全一致
-      @goal = Goal.where("goal LIKE?","#{word}")
-    elsif search == "forward_match" # 前方一致
-      @goal = Goal.where("goal LIKE?","#{word}%")
-    elsif search == "backward_match" # 後方一致
-      @goal = Goal.where("goal LIKE?","%#{word}")
-    elsif search == "partial_match" # 部分一致
-      @goal = Goal.where("goal LIKE?","%#{word}%")
-    else
-      @goal = Goal.all
+    def self.looks(search, word)
+      if search == "perfect_match" # 完全一致
+        @goal = Goal.where("goal LIKE?","#{word}")
+      elsif search == "forward_match" # 前方一致
+        @goal = Goal.where("goal LIKE?","#{word}%")
+      elsif search == "backward_match" # 後方一致
+        @goal = Goal.where("goal LIKE?","%#{word}")
+      elsif search == "partial_match" # 部分一致
+        @goal = Goal.where("goal LIKE?","%#{word}%")
+      else
+        @goal = Goal.all
+      end
     end
-  end
 
 end
