@@ -27,14 +27,8 @@ class Public::EventsController < ApplicationController
   end
 
   private
-<<<<<<< HEAD
 
   def event_params
     params.require(:event).permit(:title, :comment, :address)
   end
-=======
-    def event_params
-      params.require(:event).permit(:title, :comment)
-    end
->>>>>>> main
 end

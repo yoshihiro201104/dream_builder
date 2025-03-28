@@ -7,6 +7,7 @@ class Public::GroupsController < ApplicationController
     @goal = Goal.new
     @groups = Group.all
     @user = current_user
+    @group = @user.groups.first # ユーザーに紐づく最初のグループを取得
   end
 
   def show

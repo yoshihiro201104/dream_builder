@@ -13,6 +13,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @goals = @user.goals
+    @group = @user.groups.first # ユーザーに紐づく最初のグループを取得
   end
 
   def edit
