@@ -1,4 +1,7 @@
 <h2>イベント詳細</h2>
 <p><strong>Title:</strong> <%= @event.title %></p>
 <p><strong>Comment:</strong> <%= @event.comment %></p>
+<p class="card-title">
+  <span><i class="fa-solid fa-location-dot"></i> <%= @event.address %></span>
+</p>
 <%= link_to "戻る", group_path(@group), class: "btn btn-secondary" %>

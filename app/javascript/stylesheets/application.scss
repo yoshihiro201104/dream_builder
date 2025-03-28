@@ -1,4 +1,7 @@
 /* app/javascript/stylesheets/application.scss */ 
 @use "bootstrap/scss/bootstrap";
 
-
+#map {
+  width: 100%;
+  height: calc(100vh - 88px - 179px);
+}

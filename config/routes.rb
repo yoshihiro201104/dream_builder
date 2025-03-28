@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # ユーザー用
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
 
     # 通知機能(更新＝既読状態にする為、updateのみ設定)
     resources :notifications, only: [:update]
-
+    resource :map, only: [:show] # mapのAPI
     resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
       resource :group_users, only: [:create, :update, :destroy] # グループ参加
       resources :events, only: [:new, :create, :show, :edit, :update]  # イベント作成のルーティング
