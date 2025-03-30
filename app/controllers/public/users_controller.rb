@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :edit, :update, :index, :destroy]
 
   # ゲストユーザーのみ閲覧不可能
-  before_action :ensure_guest_user, only: [:edit, :withdraw, :check]
+  # before_action :ensure_guest_user, only: [:edit, :withdraw, :check]
 
   def index
     @users = User.all
