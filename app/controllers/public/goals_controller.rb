@@ -30,7 +30,7 @@ class Public::GoalsController < ApplicationController
   end
 
   def index
-    @goals = Goal.all
+    @goals = Goal.all.all.order(created_at: :desc)
   end
 
   def show
