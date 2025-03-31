@@ -80,3 +80,6 @@ gem "rubocop-packaging", require: false
 gem "rubocop-rspec"
 gem "rubocop-md"
 # ------------ここまで-----------------Rubocop
+
+gem 'kaminari-bootstrap'
+

@@ -30,13 +30,16 @@ class Public::GoalsController < ApplicationController
   end
 
   def index
-    @goals = Goal.all.all.order(created_at: :desc)
+    # created_at(作成日時)をdesc(降順)の順にorder(並び変える）する。
+    # order→投稿順を変更するメソッド。desc→降順
+    # Goal.all→Goalテーブルをすべて表示、つまり、一覧表示させる。
+    @goals = Goal.page(params[:page]).per(9).order(created_at: :desc)
   end
 
   def show
     @goal = Goal.find_by(id: params[:id])
     # もし目標idがなければ、一覧画面へリダイレクト
-    if @goal.nil?
+    if @goal.nil? #@goalの有無を確認。無しなら、true,有りなら、false
       redirect_to goals_path, alert: "目標が見つかりません"
     end
   end
