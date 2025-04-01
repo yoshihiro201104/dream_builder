@@ -1,37 +1,33 @@
 <div class="container mt-4">
+  <%# 目標タイトル %>
   <h3 class="text-center"><%= @goal.user.name %>さんの目標</h3>
 
-  <%# 目標のイメージ %>
-  <div class="text-center mb-3">
-    <% if @goal.image.attached? %>
-      <%= image_tag @goal.image, class: "img-fluid rounded", style: "max-width: 400px; height: auto;" %>
-    <% else %>
-      <%= image_tag 'no_image.jpg', class: "img-fluid rounded", style: "max-width: 400px; height: auto;" %>
-    <% end %>
+  <%# 目標の情報（画像 + 目標詳細） %>
+  <div class="row align-items-center mt-3">
+    <%# 目標のイメージ %>
+    <div class="col-md-6 text-center">
+      <% if @goal.image.attached? %>
+        <%= image_tag @goal.image, class: "img-fluid rounded", style: "max-width: 100%; height: auto;" %>
+      <% else %>
+        <%= image_tag 'no_image.jpg', class: "img-fluid rounded", style: "max-width: 100%; height: auto;" %>
+      <% end %>
+    </div>
+
+    <%# 目標の詳細（テーブル） %>
+    <div class="col-md-6">
+      <table class="table table-bordered text-center">
+        <tr><th>目標</th><td><%= @goal.goal %></td></tr>
+        <tr><th>いつまでに</th><td><%= @goal.target_date %></td></tr>
+        <tr><th>3か月目の目標</th><td><%= @goal.monthly_goal_3 %></td></tr>
+        <tr><th>2か月目の目標</th><td><%= @goal.monthly_goal_2 %></td></tr>
+        <tr><th>1か月目の目標</th><td><%= @goal.monthly_goal_1 %></td></tr>
+        <tr><th>週目標</th><td><%= @goal.weekly_goal %></td></tr>
+        <tr><th>アクション</th><td><%= @goal.action %></td></tr>
+      </table>
+    </div>
   </div>
 
-
-  <div class="text-center mb-3">
-    <% @goal.tags.each do |tag| %>
-      <span class="badge badge-secondary"><%= tag.name %></span>
-    <% end %>
-  </div>
-
-  <div class="text-center mb-3">
-    <%= link_to @goal.user.name, user_path(@goal.user), class: 'btn btn-primary' %>
-  </div>
-
-  <%# 目標の詳細テーブル %>
-  <table class="table table-bordered text-center">
-    <tr><th>目標</th><td><%= @goal.goal %></td></tr>
-    <tr><th>いつまでに</th><td><%= @goal.target_date %></td></tr>
-    <tr><th>3か月目の目標</th><td><%= @goal.monthly_goal_3 %></td></tr>
-    <tr><th>2か月目の目標</th><td><%= @goal.monthly_goal_2 %></td></tr>
-    <tr><th>1か月目の目標</th><td><%= @goal.monthly_goal_1 %></td></tr>
-    <tr><th>週目標</th><td><%= @goal.weekly_goal %></td></tr>
-    <tr><th>アクション</th><td><%= @goal.action %></td></tr>
-  </table>
-
+  <%# 編集・削除ボタン（目標の所有者のみ表示） %>
   <% if @goal.user_id == current_user.id %>
     <div class="text-center mt-3">
       <%= link_to '編集', edit_goal_path(@goal), class: 'btn btn-warning mx-2' %>
@@ -43,10 +39,17 @@
   <h3 class="mt-4">コメント</h3>
   <div class="list-group">
     <% @goal.goal_comments.each do |comment| %>
-      <div class="list-group-item d-flex justify-content-between align-items-center">
-        <span><strong><%= comment.user.name %></strong>: <%= comment.comment %></span>
+      <div class="list-group-item d-flex justify-content-between align-items-start">
+        <div>
+          <strong><%= comment.user.name %></strong>: <%= comment.comment %>
+        </div>
+        <div class="text-muted small text-end">
+          <%= comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+        </div>
         <% if comment.user == current_user %>
-          <%= link_to "削除", goal_goal_comment_path(@goal, comment), method: :delete, data: { confirm: "コメントを削除しますか？" }, class: "btn btn-sm btn-danger" %>
+          <div>
+            <%= link_to "削除", goal_goal_comment_path(@goal, comment), method: :delete, data: { confirm: "コメントを削除しますか？" }, class: "btn btn-sm btn-danger ms-2" %>
+          </div>
         <% end %>
       </div>
     <% end %>
