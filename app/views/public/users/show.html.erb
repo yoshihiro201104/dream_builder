@@ -59,11 +59,11 @@
 
 
 
-<div class="row">
+<div class="d-flex flex-column align-items-center mt-3" style="max-width: 250px; width: 100%; margin: 0 auto;">
   <% if current_user != @user %>
-    <td><%= render "public/relationships/btn", user: @user, options: { class: ""} %></td>
+    <%= render "public/relationships/btn", user: @user, options: { class: ""} %>
   <% else %>
-    <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
+    <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary w-100 px-3" do %>
       <i class="fas fa-user-cog"></i>
     <% end %>
   <% end %>
