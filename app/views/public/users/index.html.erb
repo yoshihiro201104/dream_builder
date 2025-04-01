@@ -9,24 +9,26 @@
         <tr>
           <th>アイコン</th>
           <th>ユーザー名</th>
-          <th>詳細</th>
+          <th>フォロー</th>
+          <th>フォロワー</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @users.each do |user| %>
           <tr class="text-center">
             <td>
-              <% if user.profile_image.attached? && user.profile_image.variable? %>
-                <%= image_tag user.profile_image.variant(resize_to_limit: [50, 50]).processed, class: "rounded-circle border border-secondary" %>
-              <% else %>
-                <%= image_tag "no_image.jpg", class: "rounded-circle border border-secondary" %>
+              <%= link_to user_path(user) do %>
+                <% if user.profile_image.attached? && user.profile_image.variable? %>
+                  <%= image_tag user.profile_image.variant(resize_to_limit: [50, 50]).processed, class: "rounded-circle border border-secondary" %>
+                <% else %>
+                  <%= image_tag "no_image.jpg", class: "rounded-circle border border-secondary" %>
+                <% end %>
               <% end %>
             </td>
-            <td class="fw-bold"><%= user.name %></td>
-            <td>
-              <%= link_to "詳細", user_path(user), class: "btn btn-sm btn-outline-primary" %>
+            <td class="fw-bold">
+              <%= link_to user.name, user_path(user), class: "text-decoration-none text-dark" %>
             </td>
-
             <td>フォロー数: <%= user.followings.count %></td>
             <td>フォロワー数: <%= user.followers.count %></td>
             <td><%= render "public/relationships/btn", user: user, options: { class: "follow-link" } %></td>
