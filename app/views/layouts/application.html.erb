@@ -51,40 +51,63 @@
               </li>
             <% elsif user_signed_in? %>
               <li class="nav-item">
-                <%= link_to "マイページ", user_path(current_user), class: "nav-link" %>
+                <%= link_to user_path(current_user), class: "nav-link" do %>
+                  <i class="fas fa-user"></i> マイページ
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "目標登録", new_goal_path, class: "nav-link" %>
+                <%= link_to new_goal_path, class: "nav-link" do %>
+                  <i class="fas fa-bullseye"></i> 目標登録
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "目標一覧", goals_path, class: "nav-link" %>
+                <%= link_to goals_path, class: "nav-link" do %>
+                  <i class="fas fa-list"></i> 目標一覧
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "ユーザー一覧", users_path, class: "nav-link" %>
+                <%= link_to users_path, class: "nav-link" do %>
+                  <i class="fas fa-users"></i> ユーザー一覧
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "グループ一覧", groups_path, class: "nav-link" %> <%# 追加したリンク %>
-              </li>
-              <%= render 'layouts/header' %>
-              <li class="nav-item">
-                <%= link_to "About", about_path, class: "nav-link" %>
+                <%= link_to groups_path, class: "nav-link" do %>
+                  <i class="fas fa-users-cog"></i> グループ一覧
+                <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+                <%= link_to about_path, class: "nav-link" do %>
+                  <i class="fas fa-info-circle"></i> About
+                <% end %>
               </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                  <i class="fas fa-sign-out-alt"></i> ログアウト
+                <% end %>
+              </li>
+
             <% else %>
-              <li class="nav-item">
-                <%= link_to "HOME", root_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "About", about_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-              </li>
+            <li class="nav-item">
+              <%= link_to root_path, class: "nav-link" do %>
+                <i class="fas fa-home"></i> HOME
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to about_path, class: "nav-link" do %>
+                <i class="fas fa-info-circle"></i> About
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_user_registration_path, class: "nav-link" do %>
+                <i class="fas fa-user-plus"></i> 新規登録
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_user_session_path, class: "nav-link" do %>
+                <i class="fas fa-sign-in-alt"></i> ログイン
+              <% end %>
+            </li>
+
             <% end %>
           </ul>
         </div>
