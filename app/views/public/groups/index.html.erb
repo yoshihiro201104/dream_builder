@@ -1,6 +1,11 @@
 <div class='container px-5 px-sm-0'>
   <%= flash[:notice] %>
-  <%=link_to "グループを作成する",new_group_path %>
+<%= link_to new_group_path, class: "btn btn-outline-secondary px-3 py-2 shadow-sm text-nowrap d-inline-flex align-items-center" do %>
+  <i class="fas fa-plus-circle me-2"></i> グループ作成
+<% end %>
+
+
+
 
   <div class='row'>
      <div class='col-md-8 offset-md-1'>
