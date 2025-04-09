@@ -19,7 +19,7 @@
         <img id="image_preview" 
              src="<%= @goal.image.attached? ? url_for(@goal.image) : asset_path('default_goal.jpg') %>" 
              class="img-fluid rounded mb-3"
-             style="width: auto; height: auto;">
+             style="width: 100%; height: auto; max-height: 300px;">
       </div>
 
       <div class="col-md-8">
@@ -73,26 +73,25 @@
   </div>
 </div>
 
-<%# プレビュー画像 %>
+<%# ✅ 修正したプレビュー用のJavaScript %>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("image_input");
     const imagePreview = document.getElementById("image_preview");
 
-    // ページを開いた時点で input をリセット（これで再選択時に確実に change イベントが発火）
-    imageInput.value = "";
-
-    imageInput.addEventListener("change", function (event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          imagePreview.src = e.target.result; // 画像をプレビュー表示
-        };
-        reader.readAsDataURL(file);
-      } else {
-        imagePreview.src = "<%= asset_path('default_goal.jpg') %>"; // 画像未選択ならデフォルト画像を表示
-      }
-    });
+    if (imageInput) {
+      imageInput.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            imagePreview.src = e.target.result; // 画像をプレビュー表示
+          };
+          reader.readAsDataURL(file);
+        } else {
+          imagePreview.src = "<%= asset_path('default_goal.jpg') %>"; // 画像未選択ならデフォルト画像を表示
+        }
+      });
+    }
   });
 </script>
