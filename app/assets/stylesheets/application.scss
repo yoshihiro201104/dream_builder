@@ -229,12 +229,7 @@ body {
   border-radius: 50% !important;
 }
 
-body {
-  background-image: url('photo-1497561813398-8fcc7a37b567.jpg'); /* 画像のURLを設定 */
-  background-size: cover; /* 画面いっぱいに表示 */
-  background-position: center; /* 画像を中央に配置 */
-  background-attachment: fixed; /* スクロールしても背景を固定 */
-}
+
 
 /* 検索フォームの背景透過設定 */
 .transparent-card {
@@ -285,5 +280,14 @@ body {
 .pagination .page-item.disabled .page-link {
   color: #6c757d;
   pointer-events: none;
+}
+
+/* 背景画像 + オーバーレイ */
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+              image-url('photo-1497561813398-8fcc7a37b567.jpg') no-repeat center center/cover;
+  background-attachment: fixed; /* スクロールしても背景を固定 */
+  color: white; /* 文字を白く */
+  font-family: "Nunito", sans-serif;
 }
 
